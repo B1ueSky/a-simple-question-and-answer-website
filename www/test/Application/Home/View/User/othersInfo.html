@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/Public/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="/Public/css/common.css" rel="stylesheet">
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="container">
+            <include file="Public:header" />
+            <div class="row">
+                <div class="col-md-9">
+                    <div>
+                        <ul class="nav nav-tabs" id="infoTabs">
+                            <li class="active"><a>基本信息</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="basicInfoTab">
+                            <div class="userInfo">
+                                <img src = "/Uploads/{$other['icon']}" class="icon">
+                            </div>
+                            <div class="infoText">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <span><b>{$other['userName']}</b>({$other['email']})</span>
+                                <div id="detail">
+                                    <label for="registerTime">注册时间:</label>
+                                    &nbsp;&nbsp;
+                                    <span id="registerTime">{$other['registerTime']}</span><br/>
+                                    <label for="lastLoginTime">上次登录:</label>
+                                    &nbsp;&nbsp;
+                                    <span id="lastLoginTime">{$other['lastLoginTime']}</span><br/>
+                                    <label for="score">积分: </label>
+                                    &nbsp;&nbsp;
+                                    <span id="score">{$other['score']}</span>
+                                    &nbsp;
+                                    <br/>
+                                    <label for="signature">签名: </label>
+                                    &nbsp;&nbsp;
+                                    <span id="signature">
+                                    <empty name="other['signature']">
+                                    TA什么都没有写哦~
+                                    <else />
+                                    {$other['signature']}
+                                    </empty>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="nav nav-tabs">
+                            <if condition="($type eq 1) or empty($type) ">
+                            <li class="active">
+                                <else />
+                                <li>
+                                    </if>
+                                    <a href="{:U('UserInfo/index',array('userId'=>$other['userId'],'type'=>1))}">TA的提问</a></li>
+                                    <if condition="($type eq 2) ">
+                                    <li class="active">
+                                        <else />
+                                        <li>
+                                            </if>
+                                            <a href="{:U('UserInfo/index',array('userId'=>$other['userId'],'type'=>2))}">TA的回答</a></li>
+                                            <if condition="($type eq 4) ">
+                                            <li class="active">
+                                                <else />
+                                                <li>
+                                                    </if>
+                                                    <a href="{:U('UserInfo/index',array('userId'=>$other['userId'],'type'=>4))}">TA的收藏</a></li>
+                                                </ul>
+                                            </div>
+                                            <div id="askList">
+                                                <ul  style="list-style-type:none">
+                                                    <foreach name="askList" item="ask">
+                                                    <li class="askBox">
+                                                        发布了问题：
+                                                        <a href="{:U('Question/questionPage',array('id'=>$ask['questionId']))}">{$ask.title}</a>
+                                                        <span class="pull-right gray">{$ask.time}</span>
+                                                    </li>
+                                                    </foreach>
+                                                </ul>
+                                                
+                                            </div>
+                                            <div id="answerList">
+                                                <ul  style="list-style-type:none">
+                                                    <foreach name="answerList" item="answer">
+                                                    <li class="answerBox">
+                                                        在问题
+                                                        <a href="{:U('Question/questionPage',array('id'=>$answer['questionId']))}">{$answer.Question.title}</a>
+                                                        中回复
+                                                        <a href="{:U('UserInfo/index',array('userId'=>$answer['ReplyUser']['userId']))}">{$answer.ReplyUser.userName}</a>
+                                                        <span class="pull-right gray">{$answer.time}</span>
+                                                        <div style="text-indent:28px;">
+                                                            {$answer.content}
+                                                        </div>
+                                                    </li>
+                                                    </foreach>
+                                                </ul>
+                                            </div>
+                                            <div id="collectionList">
+                                                <ul  style="list-style-type:none">
+                                                    <foreach name="collectionList" item="collection">
+                                                    <li class="collectBox">
+                                                        收藏了问题：
+                                                        <a href="{:U('Question/questionPage',array('id'=>$collection['questionId']))}">{$collection.Question.title}</a>
+                                                        <span class="pull-right gray">{$collection.time}</span>
+                                                    </li>
+                                                    </foreach>
+                                                </ul>
+                                            </div>
+                                            <div>{$page}</div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="right-content">
+                                                <include file="Public:hot" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script src="/Public/js/jquery-2.1.1.min.js"></script>
+                                <script src="/Public/js/bootstrap.min.js"></script>
+                            </body>
+                        </html>

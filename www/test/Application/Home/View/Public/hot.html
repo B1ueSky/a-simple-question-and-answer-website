@@ -1,0 +1,16 @@
+<a class="btn btn-success btn-lg btn-block" href="{:U('Ask/index')}">
+	<span class="glyphicon glyphicon-edit"></span>我要提问
+</a>
+<br>
+<div class="panel panel-default">
+	<div class="panel-heading">本月热门问题</div>
+	<div class="panel-body" style="padding-left:0px;">
+		<ul>
+			<foreach name="hotList" item="hotQuestion">
+			<li class="hot">
+				<a href="{:U('Question/questionPage',array('id'=>$hotQuestion['questionId']))}">{$hotQuestion.title}</a>
+			</li>
+			</foreach>
+		</ul>
+	</div>
+</div>

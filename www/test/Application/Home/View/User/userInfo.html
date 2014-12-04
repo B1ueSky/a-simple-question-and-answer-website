@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/Public/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="/Public/css/common.css" rel="stylesheet">
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="container">
+            <include file="Public:header" />
+            <div class="row">
+                <div class="col-md-9">
+                    <div>
+                        <ul class="nav nav-tabs" id="infoTabs">
+                            <li class="active">
+                                <a href="#basicInfoTab">帐号信息</a>
+                            </li>
+                            <li>
+                                <a href="#infoTab">修改资料</a>
+                            </li>
+                            <li>
+                                <a href="#passwordTab">修改密码</a>
+                            </li>
+                            <li>
+                                <a href="#iconTab">修改头像</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="basicInfoTab">
+                            <div class="userInfo">
+                                <img src = "/Uploads/{$_SESSION['icon']}" class="icon">
+                                <div id="editIcon" class="editIcon">修改头像</div>
+                            </div>
+                            <div class="infoText">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <span> <b>{$_SESSION['userName']}</b>
+                                ({$_SESSION['email']})
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="#" id="editInfo" class="editInfo">修改资料</a>
+                                </span>
+                                <div id="detail">
+                                    <label for="registerTime">注册时间:</label>
+                                    &nbsp;&nbsp;
+                                    <span id="registerTime">{$_SESSION['registerTime']}</span>
+                                    <br/>
+                                    <label for="lastLoginTime">上次登录:</label>
+                                    &nbsp;&nbsp;
+                                    <span id="lastLoginTime">{$_SESSION['lastLoginTime']}</span>
+                                    <br/>
+                                    <label for="score">积分:</label>
+                                    &nbsp;&nbsp;
+                                    <span id="score">{$_SESSION['score']}</span>
+                                    &nbsp;
+                                    <button id="scoreTip" style="outline:none;text-decoration:none;" type="button" class="btn btn-link" data-container="body" data-toggle="popover" data-placement="right"
+                                    data-html="true" data-content="积分获取:<ol>
+                                        <li>回答被提问者采纳可以获得奖励的积分</li>
+                                    </ol>
+                                    积分作用:
+                                    <ol>
+                                        <li>积分低于10的用户每天只能发布1个问题</li>
+                                        <li>积分高于10的用户每天可以发布3个问题</li>
+                                        <li>发布问题时可以取出一部分积分作为回答问题的奖励</li>
+                                    </ol>
+                                    ">
+                                    (如何获取积分)
+                                    </button>
+                                    <br/>
+                                    <label for="signature">签名:</label>
+                                    &nbsp;&nbsp;
+                                    <span id="signature">
+                                    <empty name="_SESSION['signature']">
+                                    你什么都没有写哦~
+                                    <else />
+                                    {$_SESSION['signature']}
+                                    </empty>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="infoTab">
+                            <div>
+                                <br/>
+                                <br/>
+                                <form class="form-horizontal" id="infoForm">
+                                    <div class="form-group">
+                                        <label for="newUserName" class="col-md-2 control-label">用户名</label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" id="newUserName" name="newUserName"placeholder="用户名" required="required" value="{$_SESSION['userName']}">
+                                            <span class="error userNameError"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="newSignature" class="col-md-2 control-label">签名</label>
+                                        <div class="col-md-6">
+                                            <textarea ros="3" type="textfield" class="form-control" id="newSignature" name="newSignature" placeholder="写一句话介绍一下自己吧~" >{$_SESSION['signature']}</textarea>
+                                            <span class="error signatureError"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-7 col-md-6">
+                                            <button id="saveInfo" class="btn btn-primary">保存</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="passwordTab">
+                            <br/>
+                            <form class="form-horizontal" id="passwordForm">
+                                <div class="form-group">
+                                    <label for="oldPassword" class="col-md-2 control-label">原密码</label>
+                                    <div class="col-md-3">
+                                        <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="输入原密码" required="required">
+                                        <span class="error oldPasswordError"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword" class="col-md-2 control-label">新密码</label>
+                                    <div class="col-md-3">
+                                        <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="输入新密码" required="required">
+                                        <span class="error newPasswordError"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmNewPassword" class="col-md-2 control-label">确认新密码</label>
+                                    <div class="col-md-3">
+                                        <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" placeholder="再次输入新密码" required="required">
+                                        <span class="error confirmNewPasswordError"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-5 col-md-6">
+                                        <button class="btn btn-primary" id="submitNewPassword" >保存</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="iconTab">
+                            <div id="altContent"></div>
+                        </div>
+                        <div>
+                            <ul class="nav nav-tabs">
+                                <if condition="($type eq 1) or empty($type) ">
+                                <li class="active">
+                                    <else />
+                                    <li></if>
+                                        <a href="{:U('UserInfo/index?type=1')}">我的提问</a>
+                                    </li>
+                                    <if condition="($type eq 2) ">
+                                    <li class="active">
+                                        <else />
+                                        <li></if>
+                                            <a href="{:U('UserInfo/index?type=2')}">我的回答</a>
+                                        </li>
+                                        <if condition="($type eq 3) ">
+                                        <li class="active">
+                                            <else />
+                                            <li></if>
+                                                <a href="{:U('UserInfo/index?type=3')}">回复我的</a>
+                                            </li>
+                                            <if condition="($type eq 4) ">
+                                            <li class="active">
+                                                <else />
+                                                <li></if>
+                                                    <a href="{:U('UserInfo/index?type=4')}">我的收藏</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div id="askList">
+                                            <ul  style="list-style-type:none">
+                                                <foreach name="askList" item="ask">
+                                                <li class="askBox">
+                                                    发布了问题：
+                                                    <a href="{:U('Question/questionPage',array('id'=>$ask['questionId']))}">{$ask.title}</a>
+                                                    <span class="pull-right gray">{$ask.time}</span>
+                                                </li>
+                                                </foreach>
+                                            </ul>
+                                        </div>
+                                        <div id="answerList">
+                                            <ul  style="list-style-type:none">
+                                                <foreach name="answerList" item="answer">
+                                                <li class="answerBox">
+                                                    在问题
+                                                    <a href="{:U('Question/questionPage',array('id'=>$answer['questionId']))}">{$answer.Question.title}</a>
+                                                    中回复
+                                                    <a href="{:U('UserInfo/index',array('userId'=>
+                                                        $answer['ReplyUser']['userId']))}">{$answer.ReplyUser.userName}
+                                                    </a>
+                                                    <span class="pull-right gray">{$answer.time}</span>
+                                                    <div style="text-indent:28px;">{$answer.content}</div>
+                                                </li>
+                                                </foreach>
+                                            </ul>
+                                        </div>
+                                        <div id="replyList">
+                                            <ul  style="list-style-type:none">
+                                                <foreach name="replyList" item="reply">
+                                                <li class="replyBox">
+                                                    <a href="{:U('UserInfo/index',array('userId'=>$reply['User']['userId']))}">{$reply.User.userName}</a>
+                                                    在问题
+                                                    <a href="{:U('Question/questionPage',array('id'=>$reply['questionId']))}">{$reply.Question.title}</a>
+                                                    中回复了我：
+                                                    <span class="pull-right gray">{$reply.time}</span>
+                                                    <div style="text-indent:28px;">{$reply.content}</div>
+                                                </li>
+                                                </foreach>
+                                            </ul>
+                                        </div>
+                                        <div id="collectionList">
+                                            <ul  style="list-style-type:none">
+                                                <foreach name="collectionList" item="collection">
+                                                <li class="collectBox">
+                                                    收藏了问题：
+                                                    <a href="{:U('Question/questionPage',array('id'=>$collection['questionId']))}">{$collection.Question.title}</a>
+                                                    <span class="pull-right gray">{$collection.time}</span>
+                                                </li>
+                                                </foreach>
+                                            </ul>
+                                        </div>
+                                        <div>{$page}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="right-content">
+                                        <include file="Public:hot" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script src="/Public/js/jquery-2.1.1.min.js"></script>
+                        <script src="/Public/js/xiuxiu.js"></script>
+                        <script src="/Public/js/bootstrap.min.js"></script>
+                        <script src="/Public/js/jquery.form.js"></script>
+                        <script type="text/javascript">
+                        $(document).ready(function(){
+                        xiuxiu.setLaunchVars("customMenu", []);
+                        xiuxiu.embedSWF("altContent",5,"600px","430px");
+                        //必须为绝对路径。。。忧伤了。。。
+                        xiuxiu.setUploadURL("http://www.test.com/{:U('UserInfo/xiuxiuUpload')}");
+                        xiuxiu.onUploadResponse = function (data)
+                        {
+                        location.reload();
+                        //alert("上传响应" + data);
+                        //$("#infoTabs a:first").tab('show');
+                        }
+                        $("#saveInfo").click(function(e){
+                        e.preventDefault();
+                        $("#infoForm").ajaxSubmit({
+                        url: "{:U('UserInfo/saveInfo')}",
+                        type:"post",
+                        dataType:"json",
+                        success:function(data){
+                        if(data =="userNameError"){
+                        $(".userNameError").text("用户名不能为空");
+                        return;
+                        }
+                        if(data=="success"){
+                        //修改成功
+                        location.reload();
+                        }
+                        }
+                        });
+                        });
+                        $("#submitNewPassword").click(function(e){
+                        e.preventDefault();
+                        $("#passwordForm").ajaxSubmit({
+                        url: "{:U('UserInfo/saveNewPassword')}",
+                        type:"post",
+                        dataType:"json",
+                        success:function(data){
+                        $(".oldPasswordError").text("");
+                        $(".newPasswordError").text("");
+                        $(".confirmNewPasswordError").text("");
+                        if(data == "confirmNewPasswordError"){
+                        $(".confirmNewPasswordError").text("两次密码不一致");
+                        }
+                        if(data == "oldPasswordError"){
+                        $(".oldPasswordError").text("原密码错误");
+                        }
+                        if(data == "success"){
+                            $("#oldPassword").val("");
+                            $("#newPassword").val("");
+                            $("#confirmNewPassword").val("");
+                        location.reload();
+                        }
+                        }
+                        });
+                        });
+                        $("#infoTabs a").click(function (e) {
+                        window.scrollTo(0,0);
+                        $(this).tab('show');
+                        });
+                        $("#tabs2 a").click(function (e) {
+                        $(this).tab('show');
+                        });
+                        $("#editIcon").click(function(){
+                        window.scrollTo(0,0);
+                        $("#infoTabs a[href='#iconTab']").tab('show');
+                        });
+                        $("#editInfo").click(function(){
+                        window.scrollTo(0,0);
+                        $("#infoTabs a[href='#infoTab']").tab('show');
+                        });
+                        $("#editPassword").click(function(){
+                        window.scrollTo(0,0);
+                        $("#infoTabs a[href='#passwordTab']").tab('show');
+                        });
+                        $("#scoreTip").popover();
+                        $("#scoreTip").hover(
+                        function(){
+                        $('#scoreTip').popover('show')
+                        },
+                        function(){
+                        $('#scoreTip').popover('hide')
+                        });
+                        }
+                        );
+                        </script>
+                    </body>
+                </html>

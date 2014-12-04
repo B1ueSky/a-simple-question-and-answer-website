@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link href="/Public/css/prettify.css" rel="stylesheet">
+    <link href="/Public/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/Public/css/myeditor.css" rel="stylesheet">
+    <link href="/Public/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/Public/css/common.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrap">
+      <include file="Public:header" />
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="left-content">
+              <h3><b>发布问题</b></h3>
+              <form class="form-horizontal questionForm">
+                <div class="form-group">
+                  <label for="title" class="col-md-2 control-label">标题</label>
+                  <div class="col-md-4">
+                    <input type="title" class="form-control" id="title" name="title" placeholder="请用一句话概括您的问题" required="required">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="editor" class="col-md-2 control-label">内容</label>
+                  <div class="col-md-8">
+                    <div id="alerts"></div>
+                    <div>
+                      <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+                        <div class="btn-group">
+                          <a class="btn btn-default" data-edit="bold" title="加粗(Ctrl+B)"><i class="icon-bold"></i></a>
+                          <a class="btn btn-default" data-edit="italic" title="斜体(Ctrl+I)"><i class="icon-italic"></i></a>
+                          <a class="btn btn-default" data-edit="strikethrough" title="删除线"><i class="icon-strikethrough"></i></a>
+                          <a class="btn btn-default" data-edit="underline" title="下划线(Ctrl+U)"><i class="icon-underline"></i></a>
+                        </div>
+                        <div class="btn-group">
+                          <a class="btn btn-default" data-edit="justifyleft" title="左对齐(Ctrl+L)"><i class="icon-align-left"></i></a>
+                          <a class="btn btn-default" data-edit="justifycenter" title="居中(Ctrl+E)"><i class="icon-align-center"></i></a>
+                          <a class="btn btn-default" data-edit="justifyright" title="右对齐(Ctrl+R)"><i class="icon-align-right"></i></a>
+                          <a class="btn btn-default" data-edit="justifyfull" title="两端对齐(Ctrl+J)"><i class="icon-align-justify"></i></a>
+                        </div>
+                        <div class="btn-group">
+                          <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="添加超链接"><i class="icon-link"></i></a>
+                          <div class="dropdown-menu input-append">
+                            <input class="span2" placeholder="URL" type="text" data-edit="createLink"/>
+                            <button class="btn btn-default" type="button">Add</button>
+                          </div>
+                          <a class="btn btn-default" data-edit="unlink" title="取消超链接"><i class="icon-cut"></i></a>
+                        </div>
+                        <div class="btn-group">
+                          <a class="btn btn-default" title="插入图片或直接将图片拖拽至输入框" id="pictureBtn"><i class="icon-picture"></i></a>
+                          <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
+                        </div>
+                        <div class="btn-group">
+                          <a class="btn btn-default" data-edit="undo" title="撤销(Ctrl+Z)"><i class="icon-undo"></i></a>
+                        </div>
+                        <input type="text" data-edit="inserttext" id="voiceBtn" x-webkit-speech="">
+                      </div>
+                      <div id="editor">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="score" class="col-md-2 control-label">悬赏分</label>
+                  <div class="col-md-4">
+                    <input type="score" class="form-control" id="score" name="score" placeholder="悬赏积分不能大于您的可用积分" required="required">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="label" class="col-md-2 control-label">标签</label>
+                  <div class="col-md-4">
+                    <input type="label" class="form-control" id="label" name="label" placeholder="多个标签请用半角逗号分隔" required="required">
+                  </div>
+                </div>
+              </form>
+              <div class="col-md-offset-5 col-md-4 error askError" style="text-align:right">
+                <empty name="_SESSION['userName']">
+                <a href="{:U('Login/loginPage')}">&nbsp;登录&nbsp;</a>后才可以发布问题
+                </empty>
+              </div>
+              <div class="col-md-2">
+                <empty name="_SESSION['userName']">
+                <button class="btn btn-primary disabled">发布</button>
+                <else />
+                <button class="btn btn-primary submitQuestion">发布</button>
+                </empty>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="right-content">
+              <include file="Public:hot" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="/Public/js/jquery-2.1.1.min.js"></script>
+    <script src="/Public/js/bootstrap.min.js"></script>
+    <script src="/Public/js/jquery.hotkeys.js"></script>
+    <script src="/Public/js/prettify.js"></script>
+    <script src="/Public/js/bootstrap-wysiwyg.js"></script>
+    <script src="/Public/js/myeditor.js"></script>
+    <script src="/Public/js/jquery.form.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    $(".submitQuestion").click(function(){
+    $(".questionForm").ajaxSubmit({
+    url: "{:U('Ask:askQuestion')}",
+    type:"post",
+    data:{
+    "content":$("#editor").html()
+    },
+    dataType:"json",
+    success:function(data){
+    if(data != "success"){
+    $(".askError").text(data);
+    }else{
+    location.href="{:U('Index/index')}";
+    }
+    }
+    });
+    });
+    });
+    </script>
+  </body>
+</html>

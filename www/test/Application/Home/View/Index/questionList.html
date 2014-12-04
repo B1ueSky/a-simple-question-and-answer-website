@@ -1,0 +1,48 @@
+<div>
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="{:U('Index/index')}">最新发布</a></li>
+  </ul>
+</div>
+<ul class="media-list questionList">
+  <foreach name="questionList" item="question">
+  <li class="media question">
+    <div class="pull-left">
+      <img class="media-object icon-sm" src="/Uploads/{$question.User.icon}">
+      <a href="{:U('UserInfo/index',array('userId'=>$question['User']['userId']))}" class="userName">{$question.User.userName}</a>
+    </div>
+    <div class="media-body">
+      <div class="media-heading">
+        <if condition="($question.solved eq 1) ">
+        <span class="glyphicon glyphicon-ok-sign solved">[已解决]</span>
+        <else />
+        <span class="glyphicon glyphicon-question-sign unsolved" >[待解决]</span>
+        </if>
+        <a href="{:U('Question/questionPage',array('id'=>$question['questionId']))}">{$question.title}</a>
+        <small>[ 悬赏分：{$question.score} ]</small>
+        <span class="pull-right gray">{$question.time}</span>
+      </div>
+      <div class="media-action">
+        <div style="text-indent:10px;">
+          <span class="glyphicon glyphicon-tags"></span>
+          标签:
+          <foreach name="question.label" item="singleLabel">
+          <span class="label myLabel">{$singleLabel}
+          </span>
+          &nbsp;
+          </foreach>
+        </div>
+        <div>
+          <span class="pull-right">
+          <span class="glyphicon glyphicon-eye-open gray">浏览{$question.view}</span>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="glyphicon glyphicon-comment gray">回复{$question.Answer|count}</span>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="glyphicon glyphicon-star gray">收藏{$question.Collect|count}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </li>
+  </foreach>
+  <div>{$page}</div>
+</ul>
