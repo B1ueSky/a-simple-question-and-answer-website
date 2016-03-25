@@ -20,7 +20,7 @@
         <div class="row">
           <div class="col-md-9">
             <h2 class="page-header">
-            问题
+            Question
             </h2>
             <div class="media question">
               <div class="pull-left" >
@@ -30,18 +30,18 @@
               <div class="media-body">
                 <div class="media-heading">
                   <if condition="($question.solved eq 1) ">
-                  <span class="glyphicon glyphicon-ok-sign solved">[已解决]</span>
+                  <span class="glyphicon glyphicon-ok-sign solved">[Solved]</span>
                   <else />
-                  <span class="glyphicon glyphicon-question-sign unsolved">[待解决]</span>
+                  <span class="glyphicon glyphicon-question-sign unsolved">[Unsolved]</span>
                   </if>
                   <a href="{:U('Question/questionPage',array('id'=>$question['questionId']))}">{$question.title}</a>
-                  <small>[ 悬赏分：{$question.score} ]</small>
+                  <small>[ Price：{$question.score} ]</small>
                   <span class="pull-right gray">{$question.time}</span>
                 </div>
                 <div class="media-action">
                   <div style="text-indent:10px;">
                     <span class="glyphicon glyphicon-tags"></span>
-                    标签:
+                    Tag:
                     <foreach name="question.label" item="singleLabel">
                     <span class="label myLabel">{$singleLabel}
                     </span>
@@ -57,26 +57,26 @@
                     <span class="pull-right">
                     <button class="btn btn-default disabled">
                     <span class="glyphicon glyphicon-eye-open gray">
-                    浏览<span class="viewNum">{$question.view}</span>
+                    View<span class="viewNum">{$question.view}</span>
                     </span>
                     </button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <a class="btn btn-default" href="#toAnswer">
                       <span class="glyphicon glyphicon-comment gray">
-                      回复<span class="answerNum">{$question.Answer|count}</span>
+                      Reply<span class="answerNum">{$question.Answer|count}</span>
                       </span>
                     </a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <if condition="($question.CollectEnable eq 1) or (empty($_SESSION['userId'])) ">
                     <button class="btn btn-default disabled">
                     <span class="glyphicon glyphicon-star gray">
-                    收藏<span class="collectNum">{$question.Collect|count}</span>
+                    Favorite<span class="collectNum">{$question.Collect|count}</span>
                     </span>
                     </button>
                     <else />
                     <button class="btn btn-default Collect">
                     <span class="glyphicon glyphicon-star gray">
-                    收藏<span class="collectNum">{$question.Collect|count}</span>
+                    Favorite<span class="collectNum">{$question.Collect|count}</span>
                     </span>
                     </button>
                     </if>
@@ -86,7 +86,7 @@
               </div>
             </div>
             <notempty name="bestAnswer.answerId">
-            <h2 class="page-header">提问者采纳</h2>
+            <h2 class="page-header">Accepted</h2>
             <div class="answer bestAnswer" id="bestAnswer">
               <div class="media">
                 <div class="pull-left">
@@ -109,10 +109,10 @@
                   <div class="media-action">
                     <div class="pull-right">
                       <a class="quote-btn subAnswer" href="#answer">
-                        回复(<span class="subAnswerNum">{$bestAnswer.Subanswer|count}</span>)
+                        Reply(<span class="subAnswerNum">{$bestAnswer.Subanswer|count}</span>)
                       </a>
                       <a class="quote-btn hideSubAnswer" style="display:none;" href="#answer">
-                        收起回复
+                        Hide reply
                       </a>
                       <if condition="($bestAnswer.enable eq 1) or (empty($_SESSION['userId'])) ">
                       <button class="btn btn-default disabled">
@@ -150,7 +150,7 @@
                               <a href="{:U('UserInfo/index',array('userId'=>$subAnswer['User']['userId']))}">     {$subAnswer.User.userName}
                               </a>
                               <notempty name="subAnswer.ReplyUser">
-                              <span>回复
+                              <span>Reply
                               <a href="{:U('UserInfo/index',array('userId'=>$subAnswer['ReplyUser']['userId']))}">
                                 {$subAnswer.ReplyUser.userName}
                               </a>
@@ -162,7 +162,7 @@
                               </p>
                               <span class="pull-right gray" style="padding-right:10px;">
                               <button class="btn btn-link answer_to">
-                              回复
+                              Reply
                               </button>
                               <span style="display:none" class="user_to_id">{$subAnswer.userId}</span>
                               <span style="display:none" class="user_to_name">{$subAnswer.User.userName}</span>
@@ -176,20 +176,20 @@
                       <empty name="_SESSION['userName']">
                       <span class="error">
                       <a href="{:U('Login/loginPage')}">
-                        &nbsp;登录&nbsp;
-                      </a>后才可以回复
+                        &nbsp;Login&nbsp;
+                      </a>to reply
                       </span>
                       <else />
                       <form method="post" class="form-inline">
                         <div class="input-group">
-                          <span  class="answer_to_label" style="display:none">回复</span>
+                          <span  class="answer_to_label" style="display:none">Reply</span>
                           <span  style="display:none" type="text" class="user_to_name"></span>
                           <input  type="button" style="display:none" class="btn btn-default btn-xs cancel_answer_to"  value="X">
                         </div>
                         <input disabled="disabled" style="display:none" class="answerId" value="{$bestAnswer.answerId}">
                         <input style="display:none" disabled="disabled" class="user_to_id">
                         <input type="text" class="form-control mySubAnswer" style="width:90%">
-                        <button  class="btn btn-default submitSubAnswer">回复</button>
+                        <button  class="btn btn-default submitSubAnswer">Reply</button>
                       </form>
                       </empty>
                     </div>
@@ -200,8 +200,8 @@
             </notempty>
             <div id="answers">
               <h2 class="page-header">
-              共 <em><span class="answerNum">{$question.Answer|count}</span></em>
-              条回答
+              There are <em><span class="answerNum">{$question.Answer|count}</span></em>
+              answer(s)
               </h2>
               <ul class="media-list otherAnswerList">
                 <foreach name="otherAnswers" item="otherAnswer">
@@ -222,10 +222,10 @@
                     <div class="media-action">
                       <div class="pull-right">
                         <notempty name="question.acceptable">
-                        <a href="{:U('Question/accept',array('questionId'=>$question['questionId'],'bestAnswerId'=>$otherAnswer['answerId']))}">采纳</a>
+                        <a href="{:U('Question/accept',array('questionId'=>$question['questionId'],'bestAnswerId'=>$otherAnswer['answerId']))}">Accepted</a>
                         </notempty>
-                        <a class="quote-btn subAnswer" href="#answer">回复(<span class="subAnswerNum">{$otherAnswer.Subanswer|count}</span>)</a>
-                        <a class="quote-btn hideSubAnswer" style="display:none;" href="#answer">收起回复</a>
+                        <a class="quote-btn subAnswer" href="#answer">Reply(<span class="subAnswerNum">{$otherAnswer.Subanswer|count}</span>)</a>
+                        <a class="quote-btn hideSubAnswer" style="display:none;" href="#answer">Hide reply</a>
                         <if condition="($otherAnswer.enable eq 1) or (empty($_SESSION['userId'])) ">
                         <button class="btn btn-default disabled"><span class="glyphicon glyphicon-thumbs-up"></span>{$otherAnswer.up}</button>
                         <button class="btn btn-default disabled"><span class="glyphicon glyphicon-thumbs-down"></span>{$otherAnswer.down}</button>
@@ -248,7 +248,7 @@
                                 <p>
                                 <span ><a href="{:U('UserInfo/index',array('userId'=>$subAnswer['User']['userId']))}">{$subAnswer.User.userName}</a>
                                 <notempty name="subAnswer.ReplyUser">
-                                <span>回复<a href="{:U('UserInfo/index',array('userId'=>$subAnswer['ReplyUser']['userId']))}">{$subAnswer.ReplyUser.userName}</a></span>
+                                <span>Reply<a href="{:U('UserInfo/index',array('userId'=>$subAnswer['ReplyUser']['userId']))}">{$subAnswer.ReplyUser.userName}</a></span>
                                 </notempty>
                                 :
                                 </span>
@@ -256,7 +256,7 @@
                                 </p>
                                 <span class="pull-right gray" style="padding-right:10px;">
                                 <button class="btn btn-link answer_to">
-                                回复
+                                Reply
                                 </button>
                                 <span style="display:none" class="user_to_id">{$subAnswer.userId}</span>
                                 <span style="display:none" class="user_to_name">{$subAnswer.User.userName}</span>
@@ -267,18 +267,18 @@
                           </foreach>
                         </ul>
                         <empty name="_SESSION['userName']">
-                        <span class="error"><a  href="{:U('Login/loginPage')}">&nbsp;登录&nbsp;</a>后才可以回复</span>
+                        <span class="error"><a  href="{:U('Login/loginPage')}">&nbsp;Login&nbsp;</a>to reply</span>
                         <else />
                         <form method="post" class="form-inline">
                           <div class="input-group">
-                            <span  class="answer_to_label" style="display:none">回复</span>
+                            <span  class="answer_to_label" style="display:none">Reply</span>
                             <span  style="display:none" type="text" class="user_to_name"></span>
                             <input  type="button" style="display:none" class="btn btn-default btn-xs cancel_answer_to"  value="X">
                           </div>
                           <input disabled="disabled" style="display:none" class="answerId" value="{$otherAnswer.answerId}">
                           <input style="display:none" disabled="disabled" class="user_to_id">
                           <input type="text" class="form-control mySubAnswer" style="width:90%">
-                          <button  class="btn btn-default submitSubAnswer">回复</button>
+                          <button  class="btn btn-default submitSubAnswer">Reply</button>
                         </form>
                         </empty>
                       </div>
@@ -290,7 +290,7 @@
             </div>
             <div id="myAnswer">
               <span id="toAnswer"></span>
-              <h2 class="page-header" >我要回答</h2>
+              <h2 class="page-header" >I can answer this question:</h2>
               <div style="padding-left:60px;">
                 <form class="form-horizontal myAnswerForm">
                   <div class="form-group">
@@ -300,51 +300,51 @@
                       <div>
                         <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
                           <div class="btn-group">
-                            <a class="btn btn-default" data-edit="bold" title="加粗(Ctrl+B)"> <i class="icon-bold"></i>
+                            <a class="btn btn-default" data-edit="bold" title="Bold(Ctrl+B)"> <i class="icon-bold"></i>
                             </a>
-                            <a class="btn btn-default" data-edit="italic" title="斜体(Ctrl+I)"> <i class="icon-italic"></i>
+                            <a class="btn btn-default" data-edit="italic" title="Italic(Ctrl+I)"> <i class="icon-italic"></i>
                             </a>
-                            <a class="btn btn-default" data-edit="strikethrough" title="删除线">
+                            <a class="btn btn-default" data-edit="strikethrough" title="Strikethrough">
                               <i class="icon-strikethrough"></i>
                             </a>
-                            <a class="btn btn-default" data-edit="underline" title="下划线(Ctrl+U)">
+                            <a class="btn btn-default" data-edit="underline" title="Underline(Ctrl+U)">
                               <i class="icon-underline"></i>
                             </a>
                           </div>
                           <div class="btn-group">
-                            <a class="btn btn-default" data-edit="justifyleft" title="左对齐(Ctrl+L)">
+                            <a class="btn btn-default" data-edit="justifyleft" title="Justifyleft(Ctrl+L)">
                               <i class="icon-align-left"></i>
                             </a>
-                            <a class="btn btn-default" data-edit="justifycenter" title="居中(Ctrl+E)">
+                            <a class="btn btn-default" data-edit="justifycenter" title="Justifycenter(Ctrl+E)">
                               <i class="icon-align-center"></i>
                             </a>
-                            <a class="btn btn-default" data-edit="justifyright" title="右对齐(Ctrl+R)">
+                            <a class="btn btn-default" data-edit="justifyright" title="Justifyright(Ctrl+R)">
                               <i class="icon-align-right"></i>
                             </a>
-                            <a class="btn btn-default" data-edit="justifyfull" title="两端对齐(Ctrl+J)">
+                            <a class="btn btn-default" data-edit="justifyfull" title="Justifyfull(Ctrl+J)">
                               <i class="icon-align-justify"></i>
                             </a>
                           </div>
                           <div class="btn-group">
-                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="添加超链接">
+                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="Add link">
                               <i class="icon-link"></i>
                             </a>
                             <div class="dropdown-menu input-append">
                               <input class="span2" placeholder="URL" type="text" data-edit="createLink"/>
                               <button class="btn btn-default" type="button">Add</button>
                             </div>
-                            <a class="btn btn-default" data-edit="unlink" title="取消超链接">
+                            <a class="btn btn-default" data-edit="unlink" title="Remove link">
                               <i class="icon-cut"></i>
                             </a>
                           </div>
                           <div class="btn-group">
-                            <a class="btn btn-default" title="插入图片或直接将图片拖拽至输入框" id="pictureBtn">
+                            <a class="btn btn-default" title="Drag / select an image" id="pictureBtn">
                               <i class="icon-picture"></i>
                             </a>
                             <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
                           </div>
                           <div class="btn-group">
-                            <a class="btn btn-default" data-edit="undo" title="撤销(Ctrl+Z)">
+                            <a class="btn btn-default" data-edit="undo" title="Undo(Ctrl+Z)">
                               <i class="icon-undo"></i>
                             </a>
                           </div>
@@ -357,14 +357,14 @@
                   <div class="form-group">
                     <div class="col-md-offset-5 col-md-4 error myAnswerError" style="text-align:right">
                       <empty name="_SESSION['userName']">
-                      <a href="{:U('Login/loginPage')}">&nbsp;登录&nbsp;</a>后才可以回复
+                      <a href="{:U('Login/loginPage')}">&nbsp;Login&nbsp;</a>to reply
                       </empty>
                     </div>
                     <div class="col-md-2">
                       <empty name="_SESSION['userName']">
-                      <button  class="btn btn-primary disabled">回复</button>
+                      <button  class="btn btn-primary disabled">Reply</button>
                       <else />
-                      <button  class="btn btn-primary submitMyAnswer">回复</button>
+                      <button  class="btn btn-primary submitMyAnswer">Reply</button>
                       </empty>
                     </div>
                   </div>

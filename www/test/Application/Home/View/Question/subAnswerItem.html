@@ -6,7 +6,7 @@
             <p>
             <span><a href="{:U('UserInfo/index',array('userId'=>$subAnswer['User']['userId']))}">{$subAnswer.User.userName}</a>
             <notempty name="subAnswer.ReplyUser">
-            <span>回复<a href="{:U('UserInfo/index',array('userId'=>$subAnswer['ReplyUser']['userId']))}">{$subAnswer.ReplyUser.userName}</a></span>
+            <span>Reply<a href="{:U('UserInfo/index',array('userId'=>$subAnswer['ReplyUser']['userId']))}">{$subAnswer.ReplyUser.userName}</a></span>
             </notempty>
             :
             </span>
@@ -14,7 +14,7 @@
             </p>
             <span class="pull-right gray" style="padding-right:10px;">
             <button class="btn btn-link answer_to">
-            回复
+            Reply
             </button>
             <span style="display:none" class="user_to_id">{$subAnswer.userId}</span>
             <span style="display:none" class="user_to_name">{$subAnswer.User.userName}</span>

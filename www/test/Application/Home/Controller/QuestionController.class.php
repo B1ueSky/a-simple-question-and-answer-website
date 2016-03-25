@@ -9,7 +9,7 @@ class QuestionController extends Controller {
         $Question = D( 'Question' );
         $count = $Question->count();
         $Page = new \Think\Page( $count, 10 );
-        $Page->setConfig( 'theme', "<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage% 页</a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>" );
+        $Page->setConfig( 'theme', "<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage%</a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>" );
         $show = $Page->show();
         $list = $Question->page( $pageNum.',10' )->order( "questionId desc" )->relation( true )->select();
 
@@ -103,7 +103,7 @@ class QuestionController extends Controller {
 
         $question = $Question->find( $questionId );
         if ( $question['solved'] == 1 ) {
-            $this->error( "该问题已经解决" );
+            $this->error( "Solved" );
             return;
         }
 
@@ -120,7 +120,7 @@ class QuestionController extends Controller {
         $User = D( "User" );
         $User->execute( "update t_user set score = score+$score where userId=$userId" );
 
-        $this->success( "采纳成功" );
+        $this->success( "Success" );
     }
 
     //跳转到问题页
@@ -251,7 +251,7 @@ class QuestionController extends Controller {
 
     protected function _initialize() {
         $this->where = 'question';
-        $this->title = '问题';
+        $this->title = 'Question';
 
         A( 'AutoLogin' )->autoLogin();
         A( 'Hot' )->getHotList();

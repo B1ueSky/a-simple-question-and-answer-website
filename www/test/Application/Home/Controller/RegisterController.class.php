@@ -59,13 +59,13 @@ class RegisterController extends Controller {
 			session( 'registerTime', format_date( $user['registerTime'] ) );
 			session( 'lastLoginTime', format_date( $user['lastLoginTime'] ) );
 
-			$this->success( '注册成功，正在跳转...', U('Index/index') );
+			$this->success( '...', U('Index/index') );
 		}
 	}
 
 	protected function _initialize() {
 		$this->where = 'register';
-		$this->title = '注册';
+		$this->title = 'Register';
 
 		A( 'AutoLogin' )->autoLogin();
 		A( 'Hot' )->getHotList();

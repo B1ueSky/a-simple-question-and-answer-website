@@ -13,8 +13,8 @@
     </div>
     <div class="media-action">
       <div class="pull-right">
-        <a class="quote-btn subAnswer" href="#answer">回复(<span class="subAnswerNum">{$otherAnswer.Subanswer|count}</span>)</a>
-        <a class="quote-btn hideSubAnswer" style="display:none;" href="#answer">收起回复</a>
+        <a class="quote-btn subAnswer" href="#answer">Reply(<span class="subAnswerNum">{$otherAnswer.Subanswer|count}</span>)</a>
+        <a class="quote-btn hideSubAnswer" style="display:none;" href="#answer">Hide reply</a>
         <if condition="($otherAnswer.enable eq 1) or (empty($_SESSION['userId'])) ">
         <button class="btn btn-default disabled"><span class="glyphicon glyphicon-thumbs-up"></span>{$otherAnswer.up}</button>
         <button class="btn btn-default disabled"><span class="glyphicon glyphicon-thumbs-down"></span>{$otherAnswer.down}</button>
@@ -36,7 +36,7 @@
                 <p>
                 <span ><a href="{:U('UserInfo/index',array('userId'=>$subAnswer['User']['userId']))}">{$subAnswer.User.userName}</a>
                 <notempty name="subAnswer.ReplyUser">
-                <span>回复<a href="{:U('UserInfo/index',array('userId'=>$subAnswer['ReplyUser']['userId']))}">{$subAnswer.ReplyUser.userName}</a></span>
+                <span>Reply<a href="{:U('UserInfo/index',array('userId'=>$subAnswer['ReplyUser']['userId']))}">{$subAnswer.ReplyUser.userName}</a></span>
                 </notempty>
                 :
                 </span>
@@ -44,7 +44,7 @@
                 </p>
                 <span class="pull-right gray" style="padding-right:10px;">
                 <button class="btn btn-link answer_to">
-                回复
+                Reply
                 </button>
                 <span style="display:none" class="user_to_id">{$subAnswer.userId}</span>
                 <span style="display:none" class="user_to_name">{$subAnswer.User.userName}</span>
@@ -56,14 +56,14 @@
         </ul>
         <form method="post" class="form-inline">
           <div class="input-group">
-            <span  class="answer_to_label" style="display:none">回复</span>
+            <span  class="answer_to_label" style="display:none">Reply</span>
             <span  style="display:none" type="text" class="user_to_name"></span>
             <input  type="button" style="display:none" class="btn btn-default btn-xs cancel_answer_to"  value="X">
           </div>
           <input disabled="disabled" style="display:none" class="answerId" value="{$otherAnswer.answerId}">
           <input style="display:none" disabled="disabled" class="user_to_id">
           <input type="text" class="form-control mySubAnswer" style="width:90%">
-          <button  class="btn btn-default submitSubAnswer">回复</button>
+          <button  class="btn btn-default submitSubAnswer">Reply</button>
         </form>
       </div>
     </div>

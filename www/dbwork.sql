@@ -2,7 +2,8 @@
 SQLyog 企业版 - MySQL GUI v7.14 
 MySQL - 5.5.25 : Database - q&a
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -124,6 +125,60 @@ CREATE TABLE `t_user` (
 /*Data for the table `t_user` */
 
 insert  into `t_user`(`userId`,`userName`,`password`,`icon`,`email`,`signature`,`score`,`registerTime`,`lastLoginTime`) values (8,'alwing','202cb962ac59075b5165329ea1ff5c5ecbdbbeef','5460b7d1c0ffc.jpg','1@test.com','......',8,'2014-11-10 14:24:21','2014-11-10 22:28:20'),(9,'笨笨兔很笨','202cb962ac59075b5165329ea1ff5c5ecbdbbeef','5460caaae1183.jpg','2@qq.com',NULL,11,'2014-11-10 14:41:04','2014-11-10 22:24:15'),(10,' windsun_ul','202cb962ac59075b5165329ea1ff5c5ecbdbbeef','5460b896e9599.jpg','2@test.com',NULL,10,'2014-11-10 21:07:19','2014-11-10 21:07:19'),(11,'lxy5266','202cb962ac59075b5165329ea1ff5c5ecbdbbeef','5460b8fe8441e.jpg','3@test.com',NULL,7,'2014-11-10 21:08:38','2014-11-10 22:29:30'),(12,'跑起来就有风','202cb962ac59075b5165329ea1ff5c5ecbdbbeef','5460b98022f22.jpg','4@test.com',NULL,10,'2014-11-10 21:11:09','2014-11-10 21:11:09');
+
+/*Table structure for table `t_area` */
+
+DROP TABLE IF EXISTS `t_area`;
+
+CREATE TABLE `t_area` (
+  `areaId` int(11) NOT NULL AUTO_INCREMENT,
+  `areaName` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`areaId`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+
+/*Data for the table `t_area` */
+
+insert  into `t_area`(`areaId`,`areaName`) values (10,'math'),(11,'science'),(12,'reading');
+
+/*Table structure for table `t_interest` */
+
+DROP TABLE IF EXISTS `t_interest`;
+
+CREATE TABLE `t_interest` (
+  `interestId` int(11) NOT NULL AUTO_INCREMENT,
+  `areaId` int(11) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`interestId`),
+  KEY `FK_t_interest_userId` (`userId`),
+  KEY `FK_t_interest_areaId` (`areaId`),
+  CONSTRAINT `FK_t_interest_areaId` FOREIGN KEY (`areaId`) REFERENCES `t_area` (`areaId`),
+  CONSTRAINT `FK_t_interest_userId` FOREIGN KEY (`userId`) REFERENCES `t_user` (`userId`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+/*Data for the table `t_interest` */
+
+insert  into `t_interest`(`interestId`,`areaId`,`userId`) values (9,10,8),(10,11,8);
+
+/*Table structure for table `t_expert` */
+
+DROP TABLE IF EXISTS `t_expert`;
+
+CREATE TABLE `t_expert` (
+  `expertId` int(11) NOT NULL AUTO_INCREMENT,
+  `areaId` int(11) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `bio` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`expertId`),
+  KEY `FK_t_expert_userId` (`userId`),
+  KEY `FK_t_expert_areaId` (`areaId`),
+  CONSTRAINT `FK_t_expert_areaId` FOREIGN KEY (`areaId`) REFERENCES `t_area` (`areaId`),
+  CONSTRAINT `FK_t_expert_userId` FOREIGN KEY (`userId`) REFERENCES `t_user` (`userId`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+/*Data for the table `t_expert` */
+
+insert  into `t_expert`(`expertId`,`areaId`,`userId`,`bio`) values (9,10,8, '3 years'),(10,11,8, '4 years');
+
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

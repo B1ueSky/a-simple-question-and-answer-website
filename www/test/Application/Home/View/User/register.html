@@ -17,59 +17,51 @@
         <div class="row">
           <div class="col-md-8 col-md-offset-1">
             <div class="left-content">
-              <h3><b>注册</b></h3>
+              <h3><b>Register</b></h3>
               <form class="form-horizontal" action="{:U('Register/register')}" method="post" role="form">
                 <div class="form-group">
-                  <label for="email" class="col-md-2 control-label">邮箱</label>
+                  <label for="email" class="col-md-2 control-label">Email</label>
                   <div class="col-md-4">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="邮箱" required="required" value="{$typed['email']}">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required="required" value="{$typed['email']}">
                     <span class="error" id="emailError">{$error['email']}</span>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="userName" class="col-md-2 control-label">用户名</label>
+                  <label for="userName" class="col-md-2 control-label">Username</label>
                   <div class="col-md-4">
-                    <input type="text" class="form-control" id="userName" name="userName" placeholder="用户名"  required="required" value="{$typed['userName']}">
+                    <input type="text" class="form-control" id="userName" name="userName" placeholder="Username"  required="required" value="{$typed['userName']}">
                     <span class="error" id="userNameError">{$error['userName']}</span>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="password" class="col-md-2 control-label">密码</label>
+                  <label for="password" class="col-md-2 control-label">Password</label>
                   <div class="col-md-4">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="密码"  required="required" value="{$typed['password']}">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password"  required="required" value="{$typed['password']}">
                     <span class="error" id="passwordError">{$error['password']}</span>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="rePassword" class="col-md-2 control-label">确认密码</label>
+                  <label for="rePassword" class="col-md-2 control-label">Re-enter password</label>
                   <div class="col-md-4">
-                    <input type="password" class="form-control" id="rePassword" name="rePassword" placeholder="确认密码"  required="required" value="{$typed['rePassword']}">
+                    <input type="password" class="form-control" id="rePassword" name="rePassword" placeholder="Re-enter password"  required="required" value="{$typed['rePassword']}">
                     <span class="error" id="rePasswordError">{$error['rePassword']}</span>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="verifyText" class="col-md-2 control-label">验证码</label>
+                  <label for="verifyText" class="col-md-2 control-label">Not robot?</label>
                   <div class="col-md-4">
-                    <input type="text" class="form-control" id="verifyText" name="verify"  placeholder="验证码" required="required">
-                    <img  alt="验证码"  id="verifyImg" src="{:U('Register/createVerify',array())}">
+                    <input type="text" class="form-control" id="verifyText" name="verify"  placeholder="Prove yourself" required="required">
+                    <img  alt="Validation Code"  id="verifyImg" src="{:U('Register/createVerify',array())}">
                     <span class="error" id="verifyError">{$verifyError}</span>
-                    <br><a href="#" id="changeVerify">看不清？换一张</a>
+                    <br><a href="#" id="changeVerify">Try another one?</a>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-md-offset-6 col-md-10">
-                    <button id="submit" class="btn btn-primary">注册</button>
+                    <button id="submit" class="btn btn-primary">Register</button>
                   </div>
                 </div>
               </form>
-              <div class="loginTip well">
-                <h4><b>登录后，您可以：</b></h4>
-                <ol>
-                  <li>提出问题寻求帮助</li>
-                  <li>参与问题的讨论和回复</li>
-                  <li>收藏有价值的问题</li>
-                </ol>
-              </div>
             </div>
           </div>
           <div class="col-md-3">

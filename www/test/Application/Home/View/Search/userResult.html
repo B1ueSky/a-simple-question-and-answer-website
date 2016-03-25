@@ -18,7 +18,7 @@
                     <div class="col-md-9">
                         <div class="left-content">
                             <h3 class="page-header">
-                            <notempty name="keyword">“<span class="keywordText">{$keyword}</span>”&nbsp;&nbsp;</notempty>搜索结果：
+                            <notempty name="keyword">“<span class="keywordText">{$keyword}</span>”&nbsp;&nbsp;</notempty>Search results：
                             </h3>
                             <ul class="media-list userList">
                                 <foreach name="userList" item="user">
@@ -36,17 +36,17 @@
                                             
                                             <div style="text-indent:10px;">
                                                 <span>
-                                                签名：
+                                                Signature：
                                                 <empty name="user.signature">
-                                                TA什么都没写~
+                                                Nothing...
                                                 <else />
                                                 {$user.signature}
                                                 </empty>
                                                 </span>
                                             </div>
                                             <div style="text-indent:10px;">
-                                                <span>注册时间：{$user.registerTime}</span>
-                                                <span style="padding-left:60px;">上次登录：{$user.lastLoginTime}</span>
+                                                <span>Register time：{$user.registerTime}</span>
+                                                <span style="padding-left:60px;">Last login：{$user.lastLoginTime}</span>
                                             </div>
                                             <div><p class="gray questionContent" style="text-indent:28px;">{$question.content}</p></div>
                                             <div>

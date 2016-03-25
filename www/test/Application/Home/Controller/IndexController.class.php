@@ -12,7 +12,7 @@ class IndexController extends Controller {
 
 	protected function _initialize() {
 		$this->where = 'index';
-		$this->title = '首页';
+		$this->title = 'Home';
 		A( 'AutoLogin' )->autoLogin();
 		A( 'Hot' )->getHotList();
 	}

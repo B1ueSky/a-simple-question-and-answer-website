@@ -7,7 +7,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button>
-			<a href="{:U('Index/index')}" class="navbar-brand sitetitle">Q&A <span style="font-size:12px"> 一个简单的问答网站</span></a>
+			<a href="{:U('Index/index')}" class="navbar-brand sitetitle">TeachTalk <span style="font-size:12px"> The best answers, by teachers, for teachers</span></a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="mycollaspse">
@@ -18,23 +18,23 @@
 			</ul>
 			
 			<form id="searchForm" class="navbar-form navbar-left form-inline" method="post">
-				<input class="form-control" style="width:280px;" type="text" name="keyword" placeholder="输入你想知道的内容">
+				<input class="form-control" style="width:280px;" type="text" name="keyword" placeholder="Keyword">
 				<span class="input-group">
 				<span class="input-group-btn">
-				<button class="btn btn-default" id="searchUser">
-				<span class="glyphicon glyphicon-user" style="color:gray">
-				</span>用户</button>
 				<button class="btn btn-default" id="searchQuestion">
 				<span class="glyphicon glyphicon-question-sign" style="color:gray"></span>
-				问题</button>
+				Question</button>
+				<button class="btn btn-default" id="searchUser">
+				<span class="glyphicon glyphicon-user" style="color:gray">
+				</span>User</button>
 				</span>
 				</span>
 			</form>
 			<ul class="navbar-nav navbar-right nav">
 				
 				<empty name="_SESSION['userName']">
-				<li><a id="login" href="{:U('Login/loginPage')}">登录</a></li>
-				<li><a id="register" href="{:U('Register/registerPage')}"  >注册</a></li>
+				<li><a id="login" href="{:U('Login/loginPage')}">Login</a></li>
+				<li><a id="register" href="{:U('Register/registerPage')}"  >Register</a></li>
 				<else />
 				<li>
 					<a  href="{:U('UserInfo/index')}">
@@ -43,7 +43,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="{:U('Login/logout')}">注销</a>
+					<a href="{:U('Login/logout')}">Log out</a>
 				</li>
 				</empty>
 			</ul>
@@ -53,15 +53,15 @@
 <script src="/Public/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-$("#searchUser").click(function(e){
-	e.preventDefault();
-$("#searchForm").attr("action","{:U('Search/searchUser')}");
-$("#searchForm").submit();
-});
-$("#searchQuestion").click(function(e){
-	e.preventDefault();
-$("#searchForm").attr("action","{:U('Search/searchQuestion')}");
-$("#searchForm").submit();
-});
+	$("#searchQuestion").click(function(e){
+		e.preventDefault();
+		$("#searchForm").attr("action","{:U('Search/searchQuestion')}");
+		$("#searchForm").submit();
+	});
+	$("#searchUser").click(function(e){
+		e.preventDefault();
+	$("#searchForm").attr("action","{:U('Search/searchUser')}");
+	$("#searchForm").submit();
+	});
 });
 </script>

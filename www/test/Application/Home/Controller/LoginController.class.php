@@ -17,16 +17,16 @@ class LoginController extends Controller {
 
 		if ( !( $user['userId'] ) ) {
 			$this->assign( "typed", $_POST );
-			$error['email'] = "用户不存在";
+			$error['email'] = "Invalid user or incorrect password";
 			$this->assign( "error", $error );
-			$this->display( "User:Login" );
+			$this->display( "User:login" );
 			return;
 		}
 		if ( $user['password'] !== $password ) {
 			$this->assign( "typed", $_POST );
-			$error['password'] = "密码错误";
+			$error['password'] = "Invalid user or incorrect password";
 			$this->assign( "error", $error );
-			$this->display( "User:Login" );
+			$this->display( "User:login" );
 			return;
 		}
 

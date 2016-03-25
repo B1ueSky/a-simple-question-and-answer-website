@@ -18,16 +18,16 @@
                     <div>
                         <ul class="nav nav-tabs" id="infoTabs">
                             <li class="active">
-                                <a href="#basicInfoTab">帐号信息</a>
+                                <a href="#basicInfoTab">Account</a>
                             </li>
                             <li>
-                                <a href="#infoTab">修改资料</a>
+                                <a href="#infoTab">Edit information</a>
                             </li>
                             <li>
-                                <a href="#passwordTab">修改密码</a>
+                                <a href="#passwordTab">Change password</a>
                             </li>
                             <li>
-                                <a href="#iconTab">修改头像</a>
+                                <a href="#iconTab">Edit photo</a>
                             </li>
                         </ul>
                     </div>
@@ -35,30 +35,30 @@
                         <div class="tab-pane active" id="basicInfoTab">
                             <div class="userInfo">
                                 <img src = "/Uploads/{$_SESSION['icon']}" class="icon">
-                                <div id="editIcon" class="editIcon">修改头像</div>
+                                <div id="editIcon" class="editIcon">Edit photo</div>
                             </div>
                             <div class="infoText">
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <span> <b>{$_SESSION['userName']}</b>
                                 ({$_SESSION['email']})
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="#" id="editInfo" class="editInfo">修改资料</a>
+                                <a href="#" id="editInfo" class="editInfo">Edit information</a>
                                 </span>
                                 <div id="detail">
-                                    <label for="registerTime">注册时间:</label>
+                                    <label for="registerTime">Register time:</label>
                                     &nbsp;&nbsp;
                                     <span id="registerTime">{$_SESSION['registerTime']}</span>
                                     <br/>
-                                    <label for="lastLoginTime">上次登录:</label>
+                                    <label for="lastLoginTime">Last login:</label>
                                     &nbsp;&nbsp;
                                     <span id="lastLoginTime">{$_SESSION['lastLoginTime']}</span>
                                     <br/>
-                                    <label for="score">积分:</label>
+                                    <label for="score">Contribution:</label>
                                     &nbsp;&nbsp;
                                     <span id="score">{$_SESSION['score']}</span>
                                     &nbsp;
                                     <button id="scoreTip" style="outline:none;text-decoration:none;" type="button" class="btn btn-link" data-container="body" data-toggle="popover" data-placement="right"
-                                    data-html="true" data-content="积分获取:<ol>
+                                    data-html="true" data-content="Win credit:<ol>
                                         <li>回答被提问者采纳可以获得奖励的积分</li>
                                     </ol>
                                     积分作用:
@@ -68,14 +68,14 @@
                                         <li>发布问题时可以取出一部分积分作为回答问题的奖励</li>
                                     </ol>
                                     ">
-                                    (如何获取积分)
+                                    (Make more credit?)
                                     </button>
                                     <br/>
-                                    <label for="signature">签名:</label>
+                                    <label for="signature">Signature:</label>
                                     &nbsp;&nbsp;
                                     <span id="signature">
                                     <empty name="_SESSION['signature']">
-                                    你什么都没有写哦~
+                                    Nothing...
                                     <else />
                                     {$_SESSION['signature']}
                                     </empty>
@@ -83,60 +83,62 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="tab-pane" id="infoTab">
                             <div>
                                 <br/>
                                 <br/>
                                 <form class="form-horizontal" id="infoForm">
                                     <div class="form-group">
-                                        <label for="newUserName" class="col-md-2 control-label">用户名</label>
+                                        <label for="newUserName" class="col-md-2 control-label">Username</label>
                                         <div class="col-md-4">
-                                            <input type="text" class="form-control" id="newUserName" name="newUserName"placeholder="用户名" required="required" value="{$_SESSION['userName']}">
+                                            <input type="text" class="form-control" id="newUserName" name="newUserName"placeholder="Username" required="required" value="{$_SESSION['userName']}">
                                             <span class="error userNameError"></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="newSignature" class="col-md-2 control-label">签名</label>
+                                        <label for="newSignature" class="col-md-2 control-label">Signature</label>
                                         <div class="col-md-6">
-                                            <textarea ros="3" type="textfield" class="form-control" id="newSignature" name="newSignature" placeholder="写一句话介绍一下自己吧~" >{$_SESSION['signature']}</textarea>
+                                            <textarea ros="3" type="textfield" class="form-control" id="newSignature" name="newSignature" placeholder="Describe yourself..." >{$_SESSION['signature']}</textarea>
                                             <span class="error signatureError"></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-offset-7 col-md-6">
-                                            <button id="saveInfo" class="btn btn-primary">保存</button>
+                                            <button id="saveInfo" class="btn btn-primary">Save</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
+
                         <div class="tab-pane" id="passwordTab">
                             <br/>
                             <form class="form-horizontal" id="passwordForm">
                                 <div class="form-group">
-                                    <label for="oldPassword" class="col-md-2 control-label">原密码</label>
+                                    <label for="oldPassword" class="col-md-2 control-label">Old password</label>
                                     <div class="col-md-3">
-                                        <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="输入原密码" required="required">
+                                        <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Old password" required="required">
                                         <span class="error oldPasswordError"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="newPassword" class="col-md-2 control-label">新密码</label>
+                                    <label for="newPassword" class="col-md-2 control-label">New password</label>
                                     <div class="col-md-3">
-                                        <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="输入新密码" required="required">
+                                        <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="New password" required="required">
                                         <span class="error newPasswordError"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="confirmNewPassword" class="col-md-2 control-label">确认新密码</label>
+                                    <label for="confirmNewPassword" class="col-md-2 control-label">Re-enter new password</label>
                                     <div class="col-md-3">
-                                        <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" placeholder="再次输入新密码" required="required">
+                                        <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" placeholder="Re-enter new password" required="required">
                                         <span class="error confirmNewPasswordError"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-offset-5 col-md-6">
-                                        <button class="btn btn-primary" id="submitNewPassword" >保存</button>
+                                        <button class="btn btn-primary" id="submitNewPassword" >Save</button>
                                     </div>
                                 </div>
                             </form>
@@ -150,33 +152,45 @@
                                 <li class="active">
                                     <else />
                                     <li></if>
-                                        <a href="{:U('UserInfo/index?type=1')}">我的提问</a>
+                                        <a href="{:U('UserInfo/index?type=1')}">My questions</a>
                                     </li>
                                     <if condition="($type eq 2) ">
                                     <li class="active">
                                         <else />
                                         <li></if>
-                                            <a href="{:U('UserInfo/index?type=2')}">我的回答</a>
+                                            <a href="{:U('UserInfo/index?type=2')}">My answers</a>
                                         </li>
                                         <if condition="($type eq 3) ">
                                         <li class="active">
                                             <else />
                                             <li></if>
-                                                <a href="{:U('UserInfo/index?type=3')}">回复我的</a>
+                                                <a href="{:U('UserInfo/index?type=3')}">Others reviews</a>
                                             </li>
                                             <if condition="($type eq 4) ">
                                             <li class="active">
                                                 <else />
                                                 <li></if>
-                                                    <a href="{:U('UserInfo/index?type=4')}">我的收藏</a>
+                                                    <a href="{:U('UserInfo/index?type=4')}">My favorites</a>
                                                 </li>
+                                <if condition="($type eq 5) ">
+                                    <li class="active">
+                                        <else />
+                                    <li>
+                                </if>
+                                <a href="{:U('UserInfo/index?type=5')}">Interested Areas</a></li>
+
+                                <if condition="($type eq 6) ">
+                                    <li class="active">
+                                        <else />
+                                    <li>
+                                </if>
+                                <a href="{:U('UserInfo/index?type=6')}">Expert Areas</a></li>
                                             </ul>
                                         </div>
                                         <div id="askList">
                                             <ul  style="list-style-type:none">
                                                 <foreach name="askList" item="ask">
                                                 <li class="askBox">
-                                                    发布了问题：
                                                     <a href="{:U('Question/questionPage',array('id'=>$ask['questionId']))}">{$ask.title}</a>
                                                     <span class="pull-right gray">{$ask.time}</span>
                                                 </li>
@@ -187,9 +201,9 @@
                                             <ul  style="list-style-type:none">
                                                 <foreach name="answerList" item="answer">
                                                 <li class="answerBox">
-                                                    在问题
-                                                    <a href="{:U('Question/questionPage',array('id'=>$answer['questionId']))}">{$answer.Question.title}</a>
-                                                    中回复
+                                                    Question:
+                                                    <a href="{:U('Question/questionPage',array('id'=>$answer['questionId']))}">{$answer.Question.title}</a><br>
+                                                    Answer:
                                                     <a href="{:U('UserInfo/index',array('userId'=>
                                                         $answer['ReplyUser']['userId']))}">{$answer.ReplyUser.userName}
                                                     </a>
@@ -204,9 +218,9 @@
                                                 <foreach name="replyList" item="reply">
                                                 <li class="replyBox">
                                                     <a href="{:U('UserInfo/index',array('userId'=>$reply['User']['userId']))}">{$reply.User.userName}</a>
-                                                    在问题
-                                                    <a href="{:U('Question/questionPage',array('id'=>$reply['questionId']))}">{$reply.Question.title}</a>
-                                                    中回复了我：
+                                                    Question:
+                                                    <a href="{:U('Question/questionPage',array('id'=>$reply['questionId']))}">{$reply.Question.title}</a><br>
+                                                    Other's review:
                                                     <span class="pull-right gray">{$reply.time}</span>
                                                     <div style="text-indent:28px;">{$reply.content}</div>
                                                 </li>
@@ -217,13 +231,59 @@
                                             <ul  style="list-style-type:none">
                                                 <foreach name="collectionList" item="collection">
                                                 <li class="collectBox">
-                                                    收藏了问题：
                                                     <a href="{:U('Question/questionPage',array('id'=>$collection['questionId']))}">{$collection.Question.title}</a>
                                                     <span class="pull-right gray">{$collection.time}</span>
                                                 </li>
                                                 </foreach>
                                             </ul>
                                         </div>
+                        <div id="interestList">
+                            <empty name="interestList">
+                                <else />
+                                Interested topics:
+                            </empty>
+                            <ul  style="list-style-type:none">
+                                <foreach name="interestList" item="interest">
+                                    <li class="collectBox">
+                                        {$interest.Area.areaName}
+                                    </li>
+                                </foreach>
+                            </ul>
+                        </div>
+
+                        <div id="otherAreaList">
+                            <empty name="otherAreaList">
+                                <else />
+                                Other topics:
+                            </empty>
+                            <ul  style="list-style-type:none">
+                                <foreach name="otherAreaList" item="area">
+                                    <li class="collectBox">
+                                        {$area.areaName}
+                                        <form class="form-horizontal" id="addInterestForm">
+                                            <input type="hidden" name="newAreaId" value="{$area.areaId}">
+                                            <div class="form-group">
+                                                <div class="col-md-offset-7 col-md-6">
+                                                    <button id="addInterest" class="btn btn-primary">Add to Interested</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </li>
+                                </foreach>
+                            </ul>
+                        </div>
+
+
+                        <div id="expertList">
+                            <ul  style="list-style-type:none">
+                                <foreach name="expertList" item="expert">
+                                    <li class="collectBox">
+                                        <a href="#">{$expert.Area.areaName}</a>
+                                        <span class="pull-right gray">{$expert.bio}</span>
+                                    </li>
+                                </foreach>
+                            </ul>
+                        </div>
                                         <div>{$page}</div>
                                     </div>
                                 </div>
@@ -250,6 +310,7 @@
                         //alert("上传响应" + data);
                         //$("#infoTabs a:first").tab('show');
                         }
+
                         $("#saveInfo").click(function(e){
                         e.preventDefault();
                         $("#infoForm").ajaxSubmit({
@@ -258,7 +319,7 @@
                         dataType:"json",
                         success:function(data){
                         if(data =="userNameError"){
-                        $(".userNameError").text("用户名不能为空");
+                        $(".userNameError").text("Username is required.");
                         return;
                         }
                         if(data=="success"){
@@ -268,6 +329,22 @@
                         }
                         });
                         });
+
+                        $("#addInterest").click(function(e){
+                            e.preventDefault();
+                            $("#addInterestForm").ajaxSubmit({
+                                url: "{:U('UserInfo/saveNewInterestedArea')}",
+                                type:"post",
+                                dataType:"json",
+                                success:function(data){
+                                    if(data=="success"){
+                                        //修改成功
+                                        location.reload();
+                                    }
+                                }
+                            });
+                        });
+
                         $("#submitNewPassword").click(function(e){
                         e.preventDefault();
                         $("#passwordForm").ajaxSubmit({
@@ -279,10 +356,10 @@
                         $(".newPasswordError").text("");
                         $(".confirmNewPasswordError").text("");
                         if(data == "confirmNewPasswordError"){
-                        $(".confirmNewPasswordError").text("两次密码不一致");
+                        $(".confirmNewPasswordError").text("Password doesn't match.");
                         }
                         if(data == "oldPasswordError"){
-                        $(".oldPasswordError").text("原密码错误");
+                        $(".oldPasswordError").text("Wrong old password.");
                         }
                         if(data == "success"){
                             $("#oldPassword").val("");

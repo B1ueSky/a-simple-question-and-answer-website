@@ -17,7 +17,7 @@
                 <div class="col-md-9">
                     <div>
                         <ul class="nav nav-tabs" id="infoTabs">
-                            <li class="active"><a>基本信息</a></li>
+                            <li class="active"><a>Profile</a></li>
                         </ul>
                     </div>
                     <div class="tab-content">
@@ -29,22 +29,22 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <span><b>{$other['userName']}</b>({$other['email']})</span>
                                 <div id="detail">
-                                    <label for="registerTime">注册时间:</label>
+                                    <label for="registerTime">Register time:</label>
                                     &nbsp;&nbsp;
                                     <span id="registerTime">{$other['registerTime']}</span><br/>
-                                    <label for="lastLoginTime">上次登录:</label>
+                                    <label for="lastLoginTime">Last login:</label>
                                     &nbsp;&nbsp;
                                     <span id="lastLoginTime">{$other['lastLoginTime']}</span><br/>
-                                    <label for="score">积分: </label>
+                                    <label for="score">Contribution: </label>
                                     &nbsp;&nbsp;
                                     <span id="score">{$other['score']}</span>
                                     &nbsp;
                                     <br/>
-                                    <label for="signature">签名: </label>
+                                    <label for="signature">Signature: </label>
                                     &nbsp;&nbsp;
                                     <span id="signature">
                                     <empty name="other['signature']">
-                                    TA什么都没有写哦~
+                                    Nothing...
                                     <else />
                                     {$other['signature']}
                                     </empty>
@@ -56,30 +56,46 @@
                     <div>
                         <ul class="nav nav-tabs">
                             <if condition="($type eq 1) or empty($type) ">
-                            <li class="active">
-                                <else />
+                                <li class="active">
+                            <else />
                                 <li>
-                                    </if>
-                                    <a href="{:U('UserInfo/index',array('userId'=>$other['userId'],'type'=>1))}">TA的提问</a></li>
-                                    <if condition="($type eq 2) ">
-                                    <li class="active">
-                                        <else />
-                                        <li>
-                                            </if>
-                                            <a href="{:U('UserInfo/index',array('userId'=>$other['userId'],'type'=>2))}">TA的回答</a></li>
-                                            <if condition="($type eq 4) ">
-                                            <li class="active">
-                                                <else />
-                                                <li>
-                                                    </if>
-                                                    <a href="{:U('UserInfo/index',array('userId'=>$other['userId'],'type'=>4))}">TA的收藏</a></li>
-                                                </ul>
+                            </if>
+                            <a href="{:U('UserInfo/index',array('userId'=>$other['userId'],'type'=>1))}">Questions</a></li>
+
+                            <if condition="($type eq 2) ">
+                                <li class="active">
+                            <else />
+                                <li>
+                            </if>
+                            <a href="{:U('UserInfo/index',array('userId'=>$other['userId'],'type'=>2))}">Answers</a></li>
+
+                            <if condition="($type eq 4) ">
+                                <li class="active">
+                            <else />
+                                <li>
+                            </if>
+                            <a href="{:U('UserInfo/index',array('userId'=>$other['userId'],'type'=>4))}">Favorites</a></li>
+
+                            <if condition="($type eq 5) ">
+                                <li class="active">
+                            <else />
+                                <li>
+                            </if>
+                            <a href="{:U('UserInfo/index',array('userId'=>$other['userId'],'type'=>5))}">Interested Areas</a></li>
+
+                            <if condition="($type eq 6) ">
+                                <li class="active">
+                                    <else />
+                                <li>
+                            </if>
+                            <a href="{:U('UserInfo/index',array('userId'=>$other['userId'],'type'=>6))}">Expert Areas</a></li>
+                        </ul>
+
                                             </div>
                                             <div id="askList">
                                                 <ul  style="list-style-type:none">
                                                     <foreach name="askList" item="ask">
                                                     <li class="askBox">
-                                                        发布了问题：
                                                         <a href="{:U('Question/questionPage',array('id'=>$ask['questionId']))}">{$ask.title}</a>
                                                         <span class="pull-right gray">{$ask.time}</span>
                                                     </li>
@@ -91,9 +107,9 @@
                                                 <ul  style="list-style-type:none">
                                                     <foreach name="answerList" item="answer">
                                                     <li class="answerBox">
-                                                        在问题
-                                                        <a href="{:U('Question/questionPage',array('id'=>$answer['questionId']))}">{$answer.Question.title}</a>
-                                                        中回复
+                                                        问题:
+                                                        <a href="{:U('Question/questionPage',array('id'=>$answer['questionId']))}">{$answer.Question.title}</a><br>
+                                                        回复:
                                                         <a href="{:U('UserInfo/index',array('userId'=>$answer['ReplyUser']['userId']))}">{$answer.ReplyUser.userName}</a>
                                                         <span class="pull-right gray">{$answer.time}</span>
                                                         <div style="text-indent:28px;">
@@ -107,13 +123,32 @@
                                                 <ul  style="list-style-type:none">
                                                     <foreach name="collectionList" item="collection">
                                                     <li class="collectBox">
-                                                        收藏了问题：
                                                         <a href="{:U('Question/questionPage',array('id'=>$collection['questionId']))}">{$collection.Question.title}</a>
                                                         <span class="pull-right gray">{$collection.time}</span>
                                                     </li>
                                                     </foreach>
                                                 </ul>
                                             </div>
+                    <div id="interestList">
+                        <ul  style="list-style-type:none">
+                            <foreach name="interestList" item="interest">
+                                <li class="collectBox">
+                                    <a href="#">{$interest.Area.areaName}</a>
+                                </li>
+                            </foreach>
+                        </ul>
+                    </div>
+
+                    <div id="expertList">
+                        <ul  style="list-style-type:none">
+                            <foreach name="expertList" item="expert">
+                                <li class="collectBox">
+                                    <a href="#">{$expert.Area.areaName}</a>
+                                    <span class="pull-right gray">{$expert.bio}</span>
+                                </li>
+                            </foreach>
+                        </ul>
+                    </div>
                                             <div>{$page}</div>
                                         </div>
                                         <div class="col-md-3">

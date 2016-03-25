@@ -14,7 +14,7 @@ class SearchController extends Controller {
         $Question = D( 'Question' );
         $count = $Question->where( $map )->count();
         $Page = new \Think\Page( $count, 10 );
-        $Page->setConfig( 'theme', "<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage% 页</a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>" );
+        $Page->setConfig( 'theme', "<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage%</a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>" );
         $show = $Page->show();
 
         $list = $Question->where( $map )->order( "questionId desc" )->page( $pageNum.',10' )->relation( true )->select();
@@ -41,7 +41,7 @@ class SearchController extends Controller {
         $User = D( 'User' );
         $count = $User->where( $map )->count();
         $Page = new \Think\Page( $count, 10 );
-        $Page->setConfig( 'theme', "<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage% 页</a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>" );
+        $Page->setConfig( 'theme', "<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage%</a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>" );
         $show = $Page->show();
 
 
@@ -60,7 +60,7 @@ class SearchController extends Controller {
 
     protected function _initialize() {
         $this->where = 'search';
-        $this->title = '搜索';
+        $this->title = 'Search';
         A( 'AutoLogin' )->autoLogin();
         A( 'Hot' )->getHotList();
     }
