@@ -25,10 +25,10 @@
         <div style="text-indent:10px;">
           <span class="glyphicon glyphicon-tags"></span>
           Tag:
-          <foreach name="question.label" item="singleLabel">
-          <span class="label myLabel">{$singleLabel}
+          <foreach name="question.tagins" item="tagin">
+          <span class="label myLabel"> {$tagin.areaName}
           </span>
-          &nbsp;
+            &nbsp;
           </foreach>
         </div>
         <div>
@@ -45,4 +45,9 @@
   </li>
   </foreach>
   <div>{$page}</div>
+
+  <div>
+  <foreach name="tagins" item="tagin">
+      {$tagin}</foreach>
+  </div>
 </ul>

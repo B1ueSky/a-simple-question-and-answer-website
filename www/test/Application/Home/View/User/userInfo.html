@@ -251,20 +251,20 @@
                             </ul>
                         </div>
 
-                        <div id="otherAreaList">
-                            <empty name="otherAreaList">
+                        <div id="otherInterestedAreaList">
+                            <empty name="otherInterestedAreaList">
                                 <else />
                                 Other topics:
                             </empty>
                             <ul  style="list-style-type:none">
-                                <foreach name="otherAreaList" item="area">
+                                <foreach name="otherInterestedAreaList" item="area">
                                     <li class="collectBox">
                                         {$area.areaName}
-                                        <form class="form-horizontal" id="addInterestForm">
+                                        <form class="form-horizontal addInterestForm" action="{:U('UserInfo/saveNewInterestedArea')}" method="post">
                                             <input type="hidden" name="newAreaId" value="{$area.areaId}">
                                             <div class="form-group">
                                                 <div class="col-md-offset-7 col-md-6">
-                                                    <button id="addInterest" class="btn btn-primary">Add to Interested</button>
+                                                    <button class="btn btn-primary addInterest">Add to Interested</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -280,6 +280,32 @@
                                     <li class="collectBox">
                                         <a href="#">{$expert.Area.areaName}</a>
                                         <span class="pull-right gray">{$expert.bio}</span>
+                                    </li>
+                                </foreach>
+                            </ul>
+                        </div>
+                        <div id="otherExpertAreaList">
+                            <empty name="otherExpertAreaList">
+                                <else />
+                                Other topics:
+                            </empty>
+                            <ul  style="list-style-type:none">
+                                <foreach name="otherExpertAreaList" item="area">
+                                    <li class="collectBox">
+                                        <form class="form-horizontal" id="addExpertForm" action="{:U('UserInfo/saveNewExpertArea')}" method="post">
+                                            <input type="hidden" name="newAreaId" value="{$area.areaId}">
+                                            <div class="form-group">
+                                                <div class="col-md-1">
+                                                    {$area.areaName}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" name="bio" placeholder="Bio on {$area.areaName}" required="required">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button id="addExpert" class="btn btn-primary">Add to Expert</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </li>
                                 </foreach>
                             </ul>
@@ -329,10 +355,10 @@
                         }
                         });
                         });
-
-                        $("#addInterest").click(function(e){
+                        /*
+                        $(".addInterest").click(function(e){
                             e.preventDefault();
-                            $("#addInterestForm").ajaxSubmit({
+                            $(".addInterestForm").ajaxSubmit({
                                 url: "{:U('UserInfo/saveNewInterestedArea')}",
                                 type:"post",
                                 dataType:"json",
@@ -345,6 +371,21 @@
                             });
                         });
 
+                        $("#addExpert").click(function(e){
+                            e.preventDefault();
+                            $("#addExpertForm").ajaxSubmit({
+                                url: "{:U('UserInfo/saveNewExpertArea')}",
+                                type:"post",
+                                dataType:"json",
+                                success:function(data){
+                                    if(data=="success"){
+                                        //修改成功
+                                        location.reload();
+                                    }
+                                }
+                            });
+                        });
+                         */
                         $("#submitNewPassword").click(function(e){
                         e.preventDefault();
                         $("#passwordForm").ajaxSubmit({

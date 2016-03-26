@@ -13,9 +13,17 @@ class QuestionController extends Controller {
         $show = $Page->show();
         $list = $Question->page( $pageNum.',10' )->order( "questionId desc" )->relation( true )->select();
 
+        $Area = D('Area');
+        $tagins = array();
         for ( $i=0;$i<count( $list );$i++ ) {
-            $list[$i]['label'] = explode( ",", $list[$i]['label'] );
+            foreach ($list[$i].Tagin as $tagin) {
+                $list[$i]['tagins'][] = $Area->where('areaId = '.$tagin.areaId)->select();
+                //$tagins[] = $Area->where('areaId = '.$tagin.areaId)->select();
+                $tagins[] = $tagin['areaId'];
+            }
+            //$tagins[] = $list[$i].Tagin;
         }
+        $this->assign('tagins', $tagins);
 
         $this->assign( 'questionList', $list );
         $this->assign( 'page', $show );

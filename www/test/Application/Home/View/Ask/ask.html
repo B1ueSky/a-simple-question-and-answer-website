@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
   <head>
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -76,9 +76,11 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="label" class="col-md-2 control-label">标签</label>
+                  <label class="col-md-2 control-label">Areas</label>
                   <div class="col-md-4">
-                    <input type="label" class="form-control" id="label" name="label" placeholder="Separate tags" required="required">
+                    <foreach name="areas" item="area">
+                      <input type="checkbox" name="areaList[]" value="{$area.areaId}">{$area.areaName}</input>
+                    </foreach>
                   </div>
                 </div>
               </form>

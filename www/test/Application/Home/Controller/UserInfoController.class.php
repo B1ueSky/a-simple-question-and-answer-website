@@ -106,15 +106,30 @@ class UserInfoController extends Controller {
     // add interested area
     public function saveNewInterestedArea() {
         $newAreaId = $_POST['newAreaId'];
-        //$newAreaId = 10;
+
         $Interest = D( 'Interest' );
         $userId = session( 'userId' );
-        //$userId = 13;
 
         $data['userId'] = $userId;
         $data['areaId'] = $newAreaId;
         $Interest->data( $data )->add();
-        $this->ajaxReturn( "success" );
+        //$this->ajaxReturn( "success" );
+        $this->redirect('UserInfo/index', array('type'=>5));
+    }
+
+    // add expert area
+    public function saveNewExpertArea() {
+        $newAreaId = $_POST['newAreaId'];
+        $bio = $_POST['bio'];
+        $Expert = D( 'Expert' );
+        $userId = session( 'userId' );
+
+        $data['userId'] = $userId;
+        $data['areaId'] = $newAreaId;
+        $data['bio'] = $bio;
+        $Expert->data( $data )->add();
+        //$this->ajaxReturn( "success" );
+        $this->redirect('UserInfo/index', array('type'=>6));
     }
 
     //上传头像
@@ -260,9 +275,9 @@ class UserInfoController extends Controller {
 
         $Area = D( "Area" );
         $map['areaId'] = array('not in', $interestAreaIds);
-        $otherAreaList = $Area->where($map)->select();
+        $otherInterestedAreaList = $Area->where($map)->select();
 
-        $this->assign( "otherAreaList", $otherAreaList );
+        $this->assign( "otherInterestedAreaList", $otherInterestedAreaList );
 
     }
 
@@ -282,6 +297,19 @@ class UserInfoController extends Controller {
         $expertList =  $Expert->where( "userId=$userId" )->order( "expertId desc" )->relation( "Area" )->page( $pageNum.',10' )->select();
         $this->assign( 'page', $show );
         $this->assign( "expertList", $expertList );
+
+        # find other areas
+        $expertAreaIds = array('');
+        foreach ($expertList as $expert) {
+            $expertAreaIds[] = $expert['areaId'];
+        }
+        $this->assign( "expertAreaIds", $expertAreaIds );
+
+        $Area = D( "Area" );
+        $map['areaId'] = array('not in', $expertAreaIds);
+        $otherExpertAreaList = $Area->where($map)->select();
+
+        $this->assign( "otherExpertAreaList", $otherExpertAreaList );
     }
 
     protected function _initialize() {
