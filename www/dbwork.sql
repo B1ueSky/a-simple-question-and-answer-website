@@ -179,6 +179,25 @@ CREATE TABLE `t_expert` (
 
 insert  into `t_expert`(`expertId`,`areaId`,`userId`,`bio`) values (9,10,8, '3 years'),(10,11,8, '4 years');
 
+/*Table structure for table `t_tagin` */
+
+DROP TABLE IF EXISTS `t_tagin`;
+
+CREATE TABLE `t_tagin` (
+  `taginId` int(11) NOT NULL AUTO_INCREMENT,
+  `areaId` int(11) DEFAULT NULL,
+  `questionId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`taginId`),
+  KEY `FK_t_tagin_questionId` (`questionId`),
+  KEY `FK_t_tagin_areaId` (`areaId`),
+  CONSTRAINT `FK_t_tagin_areaId` FOREIGN KEY (`areaId`) REFERENCES `t_area` (`areaId`),
+  CONSTRAINT `FK_t_tagin_questionId` FOREIGN KEY (`questionId`) REFERENCES `t_question` (`questionId`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+/*Data for the table `t_expert` */
+
+insert  into `t_tagin`(`taginId`,`areaId`,`questionId`) values (9,10,5),(10,11,5),(11,11,6),(12,11,7);
+
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -14,6 +14,12 @@ class QuestionModel extends RelationModel{
 		'foreign_key'=> 'questionId',
 		),
 
+	   'Tagin'=>array(
+		   'mapping_type' => self::HAS_MANY,
+		   'class_name' => 'Tagin',
+		   'foreign_key'=> 'questionId',
+	   ),
+
         'BestAnswer' => array(
         'mapping_type' => self::BELONGS_TO,
 		'class_name' => 'Answer',
