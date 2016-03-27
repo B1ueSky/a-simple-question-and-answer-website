@@ -122,14 +122,14 @@ $(document).ready(function(){
                                     <span id="score"><?php echo ($_SESSION['score']); ?></span>
                                     &nbsp;
                                     <button id="scoreTip" style="outline:none;text-decoration:none;" type="button" class="btn btn-link" data-container="body" data-toggle="popover" data-placement="right"
-                                    data-html="true" data-content="Win credit:<ol>
-                                        <li>回答被提问者采纳可以获得奖励的积分</li>
+                                    data-html="true" data-content="How to improve:<ol>
+                                        <li>If your answer gets accepted, you will get higher contribution score</li>
                                     </ol>
-                                    积分作用:
+                                    Why it is important:
                                     <ol>
-                                        <li>积分低于10的用户每天只能发布1个问题</li>
-                                        <li>积分高于10的用户每天可以发布3个问题</li>
-                                        <li>发布问题时可以取出一部分积分作为回答问题的奖励</li>
+                                        <li>If your contribution is lower than 10, you can ask 3 question per day</li>
+                                        <li>If your contribution is higher than 10, you can ask 5 question per day</li>
+                                        <li>You can use your contribution score to pay others to answer your question</li>
                                     </ol>
                                     ">
                                     (Make more credit?)
@@ -347,7 +347,7 @@ $(document).ready(function(){
                                 <div class="col-md-3">
                                     <div class="right-content">
                                         <a class="btn btn-success btn-lg btn-block" href="<?php echo U('Ask/index');?>">
-	<span class="glyphicon glyphicon-edit"></span>I have a question
+	<span class="glyphicon glyphicon-edit"></span> I have a question
 </a>
 <br>
 <div class="panel panel-default">

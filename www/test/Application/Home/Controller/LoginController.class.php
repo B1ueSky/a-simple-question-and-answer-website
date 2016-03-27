@@ -49,14 +49,14 @@ class LoginController extends Controller {
 		session( 'registerTime', format_date( $user['registerTime'] ) );
 		session( 'lastLoginTime', format_date( $user['lastLoginTime'] ) );
 
-		$this->success( '登录成功，正在跳转...', U('Index/index') );
+		$this->success( 'Success', U('Index/index') );
 	}
 
 	//注销
 	public function logout() {
 		session( null );
 		cookie( null );
-		$this->success( '注销成功，正在跳转...', U('Index/index') );
+		$this->success( 'Success', U('Index/index') );
 	}
 
 	protected function _initialize() {

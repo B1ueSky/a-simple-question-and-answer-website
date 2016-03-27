@@ -22,17 +22,17 @@ class AskController extends Controller {
 		}
 
 		if ( trim( $title )=="" ) {
-			$this->ajaxReturn( "标题不能为空" );
+			$this->ajaxReturn( "You need a title" );
 			return;
 		}
 
 		if ( trim( $content )=="" ) {
-			$this->ajaxReturn( "内容不能为空" );
+			$this->ajaxReturn( "Please write something" );
 			return;
 		}
 
 		if ( !is_numeric( $score ) ) {
-			$this->ajaxReturn( "悬赏分必须是数字" );
+			$this->ajaxReturn( "It has to be a number" );
 			return;
 		}
 
@@ -48,7 +48,7 @@ class AskController extends Controller {
 		$haveScore = $user['score'];
 
 		if ( intval( $score, 10 ) >intval( $haveScore, 10 ) ) {
-			$this->ajaxReturn( "悬赏分不能大于可用积分(当前可用：$haveScore)" );
+			$this->ajaxReturn( "you currently have：$haveScore" );
 			return;
 		}
 

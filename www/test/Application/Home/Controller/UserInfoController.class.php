@@ -267,7 +267,7 @@ class UserInfoController extends Controller {
         $this->assign( "interestList", $interestList );
 
         # find other areas
-        $interestAreaIds = array();
+        $interestAreaIds = array('');
         foreach ($interestList as $interest) {
             $interestAreaIds[] = $interest['areaId'];
         }

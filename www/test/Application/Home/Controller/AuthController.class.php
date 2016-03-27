@@ -10,7 +10,7 @@ class AuthController extends Controller {
 
     if ( empty( $userId ) ) {
       $result['success'] = false;
-      $result['info'] = "需要登录后才可以发布问题";
+      $result['info'] = "Please log in first";
       return $result;
     }
 
@@ -30,17 +30,17 @@ class AuthController extends Controller {
     $user = $User->find( $userId );
     $score = $user['score'];
     if ( $score>=10 ) {
-      if ( $questionCount>=3 ) {
+      if ( $questionCount>=5 ) {
         $result['success'] = false;
-        $result['info'] = "您的当前积分为".$score.",每天最多发布三个问题";
+        $result['info'] = "You can ask at most 5 question a day since you have".$score."";
       }else {
         $result['success'] = true;
       }
 
     }else {
-      if ( $questionCount>0 ) {
+      if ( $questionCount>=3 ) {
         $result['success'] = false;
-        $result['info'] = "您的当前积分为".$score.",每天只能发布一个问题";
+        $result['info'] = "You can ask at most 3 question a day since you have".$score."";
       }else {
         $result['success'] = true;
       }

@@ -194,7 +194,7 @@ class QuestionController extends Controller {
 
         if ( trim( $content ) == "" ) {
             $result['success'] = false;
-            $result['info'] = "内容不能为空";
+            $result['info'] = "Can't be bland";
             $this->ajaxReturn( $result );
             return;
         }

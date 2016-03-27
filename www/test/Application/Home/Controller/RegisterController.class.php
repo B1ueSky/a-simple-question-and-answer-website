@@ -37,7 +37,7 @@ class RegisterController extends Controller {
 			$verify = new \Think\Verify();
 			if ( !$verify->check( $_POST['verify'], "" ) ) {
 				$this->assign( "typed", $_POST );
-				$this->assign( "verifyError", "验证码错误" );
+				$this->assign( "verifyError", "try again" );
 				$this->display( 'User:register' );
 				return;
 			}

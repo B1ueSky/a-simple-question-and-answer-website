@@ -142,7 +142,7 @@ $(document).ready(function(){
                 <div class="form-group">
                   <label class="col-md-2 control-label">Areas</label>
                   <div class="col-md-4">
-                    <?php if(is_array($areas)): foreach($areas as $key=>$area): ?><input type="checkbox" name="areaList[]" value="<?php echo ($area["areaId"]); ?>"><?php echo ($area["areaName"]); ?></input><?php endforeach; endif; ?>
+                    <?php if(is_array($areas)): foreach($areas as $key=>$area): ?><p><input type="checkbox" name="areaList[]" value="<?php echo ($area["areaId"]); ?>"> <?php echo ($area["areaName"]); ?></input></p><?php endforeach; endif; ?>
                   </div>
                 </div>
               </form>
