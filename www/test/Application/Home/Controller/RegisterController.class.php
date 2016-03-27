@@ -9,6 +9,7 @@ class RegisterController extends Controller {
 		$this->display( 'User:register' );
 	}
 
+	/*
 	//创建验证码
 	public function createVerify() {
 		$Verify = new \Think\Verify();
@@ -20,7 +21,7 @@ class RegisterController extends Controller {
 		$Verify->expire = 600;
 		$Verify->entry();
 	}
-
+*/
 	//注册
 	public function register() {
 
@@ -34,6 +35,7 @@ class RegisterController extends Controller {
 			$this->display( 'User:register' );
 			return;
 		}else {
+			/*
 			$verify = new \Think\Verify();
 			if ( !$verify->check( $_POST['verify'], "" ) ) {
 				$this->assign( "typed", $_POST );
@@ -41,6 +43,7 @@ class RegisterController extends Controller {
 				$this->display( 'User:register' );
 				return;
 			}
+			*/
 			$User->password = substr( md5( $User->password ), 0, 16 ) . substr( sha1( $User->password ), 16, 24 );
 			$User->icon = 'default.jpg';
 			$User->score = 10;

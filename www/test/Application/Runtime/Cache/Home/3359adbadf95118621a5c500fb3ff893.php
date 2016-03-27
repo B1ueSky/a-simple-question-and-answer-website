@@ -111,6 +111,7 @@ $(document).ready(function(){
                     <span class="error" id="rePasswordError"><?php echo ($error['rePassword']); ?></span>
                   </div>
                 </div>
+                <!--
                 <div class="form-group">
                   <label for="verifyText" class="col-md-2 control-label">Not robot?</label>
                   <div class="col-md-4">
@@ -120,6 +121,7 @@ $(document).ready(function(){
                     <br><a href="#" id="changeVerify">Try another one?</a>
                   </div>
                 </div>
+                -->
                 <div class="form-group">
                   <div class="col-md-offset-6 col-md-10">
                     <button id="submit" class="btn btn-primary">Register</button>
@@ -151,8 +153,9 @@ $(document).ready(function(){
     </div>
     <script src="/Public/js/jquery-2.1.1.min.js"></script>
     <script src="/Public/js/bootstrap.min.js"></script>
+    <!--
     <script type="text/javascript">
-    $(document).ready(
+      $(document).ready(
     function(){
     var verifySrc = $("#verifyImg").attr("src");
     $("#changeVerify").click(function(){
@@ -166,5 +169,6 @@ $(document).ready(function(){
     }
     );
     </script>
+    -->
   </body>
 </html>
