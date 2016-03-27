@@ -21,7 +21,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button>
-			<a href="<?php echo U('Index/index');?>" class="navbar-brand sitetitle">Q&A <span style="font-size:12px"> 一个简单的问答网站</span></a>
+			<a href="<?php echo U('Index/index');?>" class="navbar-brand sitetitle">TeachTalk <span style="font-size:12px"> The best answers, by teachers, for teachers</span></a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="mycollaspse">
@@ -32,22 +32,22 @@
 			</ul>
 			
 			<form id="searchForm" class="navbar-form navbar-left form-inline" method="post">
-				<input class="form-control" style="width:280px;" type="text" name="keyword" placeholder="输入你想知道的内容">
+				<input class="form-control" style="width:280px;" type="text" name="keyword" placeholder="Keyword">
 				<span class="input-group">
 				<span class="input-group-btn">
-				<button class="btn btn-default" id="searchUser">
-				<span class="glyphicon glyphicon-user" style="color:gray">
-				</span>用户</button>
 				<button class="btn btn-default" id="searchQuestion">
 				<span class="glyphicon glyphicon-question-sign" style="color:gray"></span>
-				问题</button>
+				Question</button>
+				<button class="btn btn-default" id="searchUser">
+				<span class="glyphicon glyphicon-user" style="color:gray">
+				</span>User</button>
 				</span>
 				</span>
 			</form>
 			<ul class="navbar-nav navbar-right nav">
 				
-				<?php if(empty($_SESSION['userName'])): ?><li><a id="login" href="<?php echo U('Login/loginPage');?>">登录</a></li>
-				<li><a id="register" href="<?php echo U('Register/registerPage');?>"  >注册</a></li>
+				<?php if(empty($_SESSION['userName'])): ?><li><a id="login" href="<?php echo U('Login/loginPage');?>">Login</a></li>
+				<li><a id="register" href="<?php echo U('Register/registerPage');?>"  >Register</a></li>
 				<?php else: ?>
 				<li>
 					<a  href="<?php echo U('UserInfo/index');?>">
@@ -56,7 +56,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="<?php echo U('Login/logout');?>">注销</a>
+					<a href="<?php echo U('Login/logout');?>">Log out</a>
 				</li><?php endif; ?>
 			</ul>
 		</div>
@@ -65,16 +65,16 @@
 <script src="/Public/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-$("#searchUser").click(function(e){
-	e.preventDefault();
-$("#searchForm").attr("action","<?php echo U('Search/searchUser');?>");
-$("#searchForm").submit();
-});
-$("#searchQuestion").click(function(e){
-	e.preventDefault();
-$("#searchForm").attr("action","<?php echo U('Search/searchQuestion');?>");
-$("#searchForm").submit();
-});
+	$("#searchQuestion").click(function(e){
+		e.preventDefault();
+		$("#searchForm").attr("action","<?php echo U('Search/searchQuestion');?>");
+		$("#searchForm").submit();
+	});
+	$("#searchUser").click(function(e){
+		e.preventDefault();
+	$("#searchForm").attr("action","<?php echo U('Search/searchUser');?>");
+	$("#searchForm").submit();
+	});
 });
 </script>
 			<div class="container">
@@ -84,16 +84,16 @@ $("#searchForm").submit();
 							<h3><b>登录</b></h3>
 							<form class="form-horizontal" action="<?php echo U('Login/login');?>" method="post">
 								<div class="form-group">
-									<label for="email" class="col-md-2 control-label">邮箱</label>
+									<label for="email" class="col-md-2 control-label">Email</label>
 									<div class="col-md-4">
-										<input type="email" class="form-control" id="email" name="email" placeholder="邮箱" required="required" value="<?php echo ($typed['email']); ?>">
+										<input type="email" class="form-control" id="email" name="email" placeholder="Email" required="required" value="<?php echo ($typed['email']); ?>">
 										<span class="error"><?php echo ($error['email']); ?></span>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="password" class="col-md-2 control-label">密码</label>
+									<label for="password" class="col-md-2 control-label">Password</label>
 									<div class="col-md-4">
-										<input type="password" class="form-control" id="password" name="password" placeholder="密码" required="required" value="<?php echo ($typed['password']); ?>">
+										<input type="password" class="form-control" id="password" name="password" placeholder="No 1234567890" required="required" value="<?php echo ($typed['password']); ?>">
 										<span class="error"><?php echo ($error['password']); ?></span>
 									</div>
 								</div>
@@ -101,7 +101,7 @@ $("#searchForm").submit();
 									<div class="col-md-offset-2 col-md-10">
 										<div class="checkbox">
 											<label>
-												<input type="checkbox">下次自动登录
+												<input type="checkbox">Remember me!
 											</label>
 											<span class="help-block"></span>
 										</div>
@@ -109,29 +109,20 @@ $("#searchForm").submit();
 								</div>
 								<div class="form-group">
 									<div class="col-md-offset-6 col-md-10">
-										<button type="submit" class="btn btn-primary">登录</button>
+										<button type="submit" class="btn btn-primary">Login</button>
 									</div>
 								</div>
 							</form>
-							
-							<div class="loginTip well">
-								<h4><b>登录后，您可以：</b></h4>
-								<ol>
-									<li>提出问题寻求帮助</li>
-									<li>参与问题的讨论和回复</li>
-									<li>收藏有价值的问题</li>
-								</ol>
-							</div>
 						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="right-content">
 							<a class="btn btn-success btn-lg btn-block" href="<?php echo U('Ask/index');?>">
-	<span class="glyphicon glyphicon-edit"></span>我要提问
+	<span class="glyphicon glyphicon-edit"></span>I have a question
 </a>
 <br>
 <div class="panel panel-default">
-	<div class="panel-heading">本月热门问题</div>
+	<div class="panel-heading">Monthly trending topic</div>
 	<div class="panel-body" style="padding-left:0px;">
 		<ul>
 			<?php if(is_array($hotList)): foreach($hotList as $key=>$hotQuestion): ?><li class="hot">

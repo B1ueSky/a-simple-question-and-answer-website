@@ -24,7 +24,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button>
-			<a href="<?php echo U('Index/index');?>" class="navbar-brand sitetitle">Q&A <span style="font-size:12px"> 一个简单的问答网站</span></a>
+			<a href="<?php echo U('Index/index');?>" class="navbar-brand sitetitle">TeachTalk <span style="font-size:12px"> The best answers, by teachers, for teachers</span></a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="mycollaspse">
@@ -35,22 +35,22 @@
 			</ul>
 			
 			<form id="searchForm" class="navbar-form navbar-left form-inline" method="post">
-				<input class="form-control" style="width:280px;" type="text" name="keyword" placeholder="输入你想知道的内容">
+				<input class="form-control" style="width:280px;" type="text" name="keyword" placeholder="Keyword">
 				<span class="input-group">
 				<span class="input-group-btn">
-				<button class="btn btn-default" id="searchUser">
-				<span class="glyphicon glyphicon-user" style="color:gray">
-				</span>用户</button>
 				<button class="btn btn-default" id="searchQuestion">
 				<span class="glyphicon glyphicon-question-sign" style="color:gray"></span>
-				问题</button>
+				Question</button>
+				<button class="btn btn-default" id="searchUser">
+				<span class="glyphicon glyphicon-user" style="color:gray">
+				</span>User</button>
 				</span>
 				</span>
 			</form>
 			<ul class="navbar-nav navbar-right nav">
 				
-				<?php if(empty($_SESSION['userName'])): ?><li><a id="login" href="<?php echo U('Login/loginPage');?>">登录</a></li>
-				<li><a id="register" href="<?php echo U('Register/registerPage');?>"  >注册</a></li>
+				<?php if(empty($_SESSION['userName'])): ?><li><a id="login" href="<?php echo U('Login/loginPage');?>">Login</a></li>
+				<li><a id="register" href="<?php echo U('Register/registerPage');?>"  >Register</a></li>
 				<?php else: ?>
 				<li>
 					<a  href="<?php echo U('UserInfo/index');?>">
@@ -59,7 +59,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="<?php echo U('Login/logout');?>">注销</a>
+					<a href="<?php echo U('Login/logout');?>">Log out</a>
 				</li><?php endif; ?>
 			</ul>
 		</div>
@@ -68,23 +68,23 @@
 <script src="/Public/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-$("#searchUser").click(function(e){
-	e.preventDefault();
-$("#searchForm").attr("action","<?php echo U('Search/searchUser');?>");
-$("#searchForm").submit();
-});
-$("#searchQuestion").click(function(e){
-	e.preventDefault();
-$("#searchForm").attr("action","<?php echo U('Search/searchQuestion');?>");
-$("#searchForm").submit();
-});
+	$("#searchQuestion").click(function(e){
+		e.preventDefault();
+		$("#searchForm").attr("action","<?php echo U('Search/searchQuestion');?>");
+		$("#searchForm").submit();
+	});
+	$("#searchUser").click(function(e){
+		e.preventDefault();
+	$("#searchForm").attr("action","<?php echo U('Search/searchUser');?>");
+	$("#searchForm").submit();
+	});
 });
 </script>
       <div class="container">
         <div class="row">
           <div class="col-md-9">
             <h2 class="page-header">
-            问题
+            Question
             </h2>
             <div class="media question">
               <div class="pull-left" >
@@ -93,22 +93,23 @@ $("#searchForm").submit();
               </div>
               <div class="media-body">
                 <div class="media-heading">
-                  <?php if(($question["solved"] == 1) ): ?><span class="glyphicon glyphicon-ok-sign solved">[已解决]</span>
+                  <?php if(($question["solved"] == 1) ): ?><span class="glyphicon glyphicon-ok-sign solved">[Solved]</span>
                   <?php else: ?>
-                  <span class="glyphicon glyphicon-question-sign unsolved">[待解决]</span><?php endif; ?>
+                  <span class="glyphicon glyphicon-question-sign unsolved">[Unsolved]</span><?php endif; ?>
                   <a href="<?php echo U('Question/questionPage',array('id'=>$question['questionId']));?>"><?php echo ($question["title"]); ?></a>
-                  <small>[ 悬赏分：<?php echo ($question["score"]); ?> ]</small>
+                  <small>[ Price：<?php echo ($question["score"]); ?> ]</small>
                   <span class="pull-right gray"><?php echo ($question["time"]); ?></span>
                 </div>
                 <div class="media-action">
+                  <!--
                   <div style="text-indent:10px;">
                     <span class="glyphicon glyphicon-tags"></span>
-                    标签:
+                    Tag:
                     <?php if(is_array($question["label"])): foreach($question["label"] as $key=>$singleLabel): ?><span class="label myLabel"><?php echo ($singleLabel); ?>
                     </span>
                     &nbsp;<?php endforeach; endif; ?>
                   </div>
-                  
+                  -->
                   <div>
                     <br/>
                     <p class="gray questionContent" style="text-indent:28px;"><?php echo ($question["content"]); ?></p>
@@ -117,25 +118,25 @@ $("#searchForm").submit();
                     <span class="pull-right">
                     <button class="btn btn-default disabled">
                     <span class="glyphicon glyphicon-eye-open gray">
-                    浏览<span class="viewNum"><?php echo ($question["view"]); ?></span>
+                    View<span class="viewNum"><?php echo ($question["view"]); ?></span>
                     </span>
                     </button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <a class="btn btn-default" href="#toAnswer">
                       <span class="glyphicon glyphicon-comment gray">
-                      回复<span class="answerNum"><?php echo (count($question["Answer"])); ?></span>
+                      Reply<span class="answerNum"><?php echo (count($question["Answer"])); ?></span>
                       </span>
                     </a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <?php if(($question["CollectEnable"] == 1) or (empty($_SESSION['userId'])) ): ?><button class="btn btn-default disabled">
                     <span class="glyphicon glyphicon-star gray">
-                    收藏<span class="collectNum"><?php echo (count($question["Collect"])); ?></span>
+                    Favorite<span class="collectNum"><?php echo (count($question["Collect"])); ?></span>
                     </span>
                     </button>
                     <?php else: ?>
                     <button class="btn btn-default Collect">
                     <span class="glyphicon glyphicon-star gray">
-                    收藏<span class="collectNum"><?php echo (count($question["Collect"])); ?></span>
+                    Favorite<span class="collectNum"><?php echo (count($question["Collect"])); ?></span>
                     </span>
                     </button><?php endif; ?>
                     </span>
@@ -143,7 +144,7 @@ $("#searchForm").submit();
                 </div>
               </div>
             </div>
-            <?php if(!empty($bestAnswer["answerId"])): ?><h2 class="page-header">提问者采纳</h2>
+            <?php if(!empty($bestAnswer["answerId"])): ?><h2 class="page-header">Accepted</h2>
             <div class="answer bestAnswer" id="bestAnswer">
               <div class="media">
                 <div class="pull-left">
@@ -166,10 +167,10 @@ $("#searchForm").submit();
                   <div class="media-action">
                     <div class="pull-right">
                       <a class="quote-btn subAnswer" href="#answer">
-                        回复(<span class="subAnswerNum"><?php echo (count($bestAnswer["Subanswer"])); ?></span>)
+                        Reply(<span class="subAnswerNum"><?php echo (count($bestAnswer["Subanswer"])); ?></span>)
                       </a>
                       <a class="quote-btn hideSubAnswer" style="display:none;" href="#answer">
-                        收起回复
+                        Hide reply
                       </a>
                       <?php if(($bestAnswer["enable"] == 1) or (empty($_SESSION['userId'])) ): ?><button class="btn btn-default disabled">
                       <span class="glyphicon glyphicon-thumbs-up"></span>
@@ -203,7 +204,7 @@ $("#searchForm").submit();
                               <span>
                               <a href="<?php echo U('UserInfo/index',array('userId'=>$subAnswer['User']['userId']));?>">     <?php echo ($subAnswer["User"]["userName"]); ?>
                               </a>
-                              <?php if(!empty($subAnswer["ReplyUser"])): ?><span>回复
+                              <?php if(!empty($subAnswer["ReplyUser"])): ?><span>Reply
                               <a href="<?php echo U('UserInfo/index',array('userId'=>$subAnswer['ReplyUser']['userId']));?>">
                                 <?php echo ($subAnswer["ReplyUser"]["userName"]); ?>
                               </a>
@@ -214,7 +215,7 @@ $("#searchForm").submit();
                               </p>
                               <span class="pull-right gray" style="padding-right:10px;">
                               <button class="btn btn-link answer_to">
-                              回复
+                              Reply
                               </button>
                               <span style="display:none" class="user_to_id"><?php echo ($subAnswer["userId"]); ?></span>
                               <span style="display:none" class="user_to_name"><?php echo ($subAnswer["User"]["userName"]); ?></span>
@@ -226,20 +227,20 @@ $("#searchForm").submit();
                       </ul>
                       <?php if(empty($_SESSION['userName'])): ?><span class="error">
                       <a href="<?php echo U('Login/loginPage');?>">
-                        &nbsp;登录&nbsp;
-                      </a>后才可以回复
+                        &nbsp;Login&nbsp;
+                      </a>to reply
                       </span>
                       <?php else: ?>
                       <form method="post" class="form-inline">
                         <div class="input-group">
-                          <span  class="answer_to_label" style="display:none">回复</span>
+                          <span  class="answer_to_label" style="display:none">Reply</span>
                           <span  style="display:none" type="text" class="user_to_name"></span>
                           <input  type="button" style="display:none" class="btn btn-default btn-xs cancel_answer_to"  value="X">
                         </div>
                         <input disabled="disabled" style="display:none" class="answerId" value="<?php echo ($bestAnswer["answerId"]); ?>">
                         <input style="display:none" disabled="disabled" class="user_to_id">
                         <input type="text" class="form-control mySubAnswer" style="width:90%">
-                        <button  class="btn btn-default submitSubAnswer">回复</button>
+                        <button  class="btn btn-default submitSubAnswer">Reply</button>
                       </form><?php endif; ?>
                     </div>
                   </div>
@@ -248,8 +249,8 @@ $("#searchForm").submit();
             </div><?php endif; ?>
             <div id="answers">
               <h2 class="page-header">
-              共 <em><span class="answerNum"><?php echo (count($question["Answer"])); ?></span></em>
-              条回答
+              There are <em><span class="answerNum"><?php echo (count($question["Answer"])); ?></span></em>
+              answer(s)
               </h2>
               <ul class="media-list otherAnswerList">
                 <?php if(is_array($otherAnswers)): foreach($otherAnswers as $key=>$otherAnswer): ?><li class="media answer">
@@ -268,9 +269,9 @@ $("#searchForm").submit();
                     </div>
                     <div class="media-action">
                       <div class="pull-right">
-                        <?php if(!empty($question["acceptable"])): ?><a href="<?php echo U('Question/accept',array('questionId'=>$question['questionId'],'bestAnswerId'=>$otherAnswer['answerId']));?>">采纳</a><?php endif; ?>
-                        <a class="quote-btn subAnswer" href="#answer">回复(<span class="subAnswerNum"><?php echo (count($otherAnswer["Subanswer"])); ?></span>)</a>
-                        <a class="quote-btn hideSubAnswer" style="display:none;" href="#answer">收起回复</a>
+                        <?php if(!empty($question["acceptable"])): ?><a href="<?php echo U('Question/accept',array('questionId'=>$question['questionId'],'bestAnswerId'=>$otherAnswer['answerId']));?>">Accepted</a><?php endif; ?>
+                        <a class="quote-btn subAnswer" href="#answer">Reply(<span class="subAnswerNum"><?php echo (count($otherAnswer["Subanswer"])); ?></span>)</a>
+                        <a class="quote-btn hideSubAnswer" style="display:none;" href="#answer">Hide reply</a>
                         <?php if(($otherAnswer["enable"] == 1) or (empty($_SESSION['userId'])) ): ?><button class="btn btn-default disabled"><span class="glyphicon glyphicon-thumbs-up"></span><?php echo ($otherAnswer["up"]); ?></button>
                         <button class="btn btn-default disabled"><span class="glyphicon glyphicon-thumbs-down"></span><?php echo ($otherAnswer["down"]); ?></button>
                         <?php else: ?>
@@ -289,14 +290,14 @@ $("#searchForm").submit();
                               <div class="media-content" >
                                 <p>
                                 <span ><a href="<?php echo U('UserInfo/index',array('userId'=>$subAnswer['User']['userId']));?>"><?php echo ($subAnswer["User"]["userName"]); ?></a>
-                                <?php if(!empty($subAnswer["ReplyUser"])): ?><span>回复<a href="<?php echo U('UserInfo/index',array('userId'=>$subAnswer['ReplyUser']['userId']));?>"><?php echo ($subAnswer["ReplyUser"]["userName"]); ?></a></span><?php endif; ?>
+                                <?php if(!empty($subAnswer["ReplyUser"])): ?><span>Reply<a href="<?php echo U('UserInfo/index',array('userId'=>$subAnswer['ReplyUser']['userId']));?>"><?php echo ($subAnswer["ReplyUser"]["userName"]); ?></a></span><?php endif; ?>
                                 :
                                 </span>
                                 <?php echo ($subAnswer["content"]); ?>
                                 </p>
                                 <span class="pull-right gray" style="padding-right:10px;">
                                 <button class="btn btn-link answer_to">
-                                回复
+                                Reply
                                 </button>
                                 <span style="display:none" class="user_to_id"><?php echo ($subAnswer["userId"]); ?></span>
                                 <span style="display:none" class="user_to_name"><?php echo ($subAnswer["User"]["userName"]); ?></span>
@@ -305,18 +306,18 @@ $("#searchForm").submit();
                             </div>
                           </li><?php endforeach; endif; ?>
                         </ul>
-                        <?php if(empty($_SESSION['userName'])): ?><span class="error"><a  href="<?php echo U('Login/loginPage');?>">&nbsp;登录&nbsp;</a>后才可以回复</span>
+                        <?php if(empty($_SESSION['userName'])): ?><span class="error"><a  href="<?php echo U('Login/loginPage');?>">&nbsp;Login&nbsp;</a>to reply</span>
                         <?php else: ?>
                         <form method="post" class="form-inline">
                           <div class="input-group">
-                            <span  class="answer_to_label" style="display:none">回复</span>
+                            <span  class="answer_to_label" style="display:none">Reply</span>
                             <span  style="display:none" type="text" class="user_to_name"></span>
                             <input  type="button" style="display:none" class="btn btn-default btn-xs cancel_answer_to"  value="X">
                           </div>
                           <input disabled="disabled" style="display:none" class="answerId" value="<?php echo ($otherAnswer["answerId"]); ?>">
                           <input style="display:none" disabled="disabled" class="user_to_id">
                           <input type="text" class="form-control mySubAnswer" style="width:90%">
-                          <button  class="btn btn-default submitSubAnswer">回复</button>
+                          <button  class="btn btn-default submitSubAnswer">Reply</button>
                         </form><?php endif; ?>
                       </div>
                     </div>
@@ -326,7 +327,7 @@ $("#searchForm").submit();
             </div>
             <div id="myAnswer">
               <span id="toAnswer"></span>
-              <h2 class="page-header" >我要回答</h2>
+              <h2 class="page-header" >I can answer this question:</h2>
               <div style="padding-left:60px;">
                 <form class="form-horizontal myAnswerForm">
                   <div class="form-group">
@@ -336,51 +337,51 @@ $("#searchForm").submit();
                       <div>
                         <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
                           <div class="btn-group">
-                            <a class="btn btn-default" data-edit="bold" title="加粗(Ctrl+B)"> <i class="icon-bold"></i>
+                            <a class="btn btn-default" data-edit="bold" title="Bold(Ctrl+B)"> <i class="icon-bold"></i>
                             </a>
-                            <a class="btn btn-default" data-edit="italic" title="斜体(Ctrl+I)"> <i class="icon-italic"></i>
+                            <a class="btn btn-default" data-edit="italic" title="Italic(Ctrl+I)"> <i class="icon-italic"></i>
                             </a>
-                            <a class="btn btn-default" data-edit="strikethrough" title="删除线">
+                            <a class="btn btn-default" data-edit="strikethrough" title="Strikethrough">
                               <i class="icon-strikethrough"></i>
                             </a>
-                            <a class="btn btn-default" data-edit="underline" title="下划线(Ctrl+U)">
+                            <a class="btn btn-default" data-edit="underline" title="Underline(Ctrl+U)">
                               <i class="icon-underline"></i>
                             </a>
                           </div>
                           <div class="btn-group">
-                            <a class="btn btn-default" data-edit="justifyleft" title="左对齐(Ctrl+L)">
+                            <a class="btn btn-default" data-edit="justifyleft" title="Justifyleft(Ctrl+L)">
                               <i class="icon-align-left"></i>
                             </a>
-                            <a class="btn btn-default" data-edit="justifycenter" title="居中(Ctrl+E)">
+                            <a class="btn btn-default" data-edit="justifycenter" title="Justifycenter(Ctrl+E)">
                               <i class="icon-align-center"></i>
                             </a>
-                            <a class="btn btn-default" data-edit="justifyright" title="右对齐(Ctrl+R)">
+                            <a class="btn btn-default" data-edit="justifyright" title="Justifyright(Ctrl+R)">
                               <i class="icon-align-right"></i>
                             </a>
-                            <a class="btn btn-default" data-edit="justifyfull" title="两端对齐(Ctrl+J)">
+                            <a class="btn btn-default" data-edit="justifyfull" title="Justifyfull(Ctrl+J)">
                               <i class="icon-align-justify"></i>
                             </a>
                           </div>
                           <div class="btn-group">
-                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="添加超链接">
+                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="Add link">
                               <i class="icon-link"></i>
                             </a>
                             <div class="dropdown-menu input-append">
                               <input class="span2" placeholder="URL" type="text" data-edit="createLink"/>
                               <button class="btn btn-default" type="button">Add</button>
                             </div>
-                            <a class="btn btn-default" data-edit="unlink" title="取消超链接">
+                            <a class="btn btn-default" data-edit="unlink" title="Remove link">
                               <i class="icon-cut"></i>
                             </a>
                           </div>
                           <div class="btn-group">
-                            <a class="btn btn-default" title="插入图片或直接将图片拖拽至输入框" id="pictureBtn">
+                            <a class="btn btn-default" title="Drag / select an image" id="pictureBtn">
                               <i class="icon-picture"></i>
                             </a>
                             <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
                           </div>
                           <div class="btn-group">
-                            <a class="btn btn-default" data-edit="undo" title="撤销(Ctrl+Z)">
+                            <a class="btn btn-default" data-edit="undo" title="Undo(Ctrl+Z)">
                               <i class="icon-undo"></i>
                             </a>
                           </div>
@@ -392,12 +393,12 @@ $("#searchForm").submit();
                   </div>
                   <div class="form-group">
                     <div class="col-md-offset-5 col-md-4 error myAnswerError" style="text-align:right">
-                      <?php if(empty($_SESSION['userName'])): ?><a href="<?php echo U('Login/loginPage');?>">&nbsp;登录&nbsp;</a>后才可以回复<?php endif; ?>
+                      <?php if(empty($_SESSION['userName'])): ?><a href="<?php echo U('Login/loginPage');?>">&nbsp;Login&nbsp;</a>to reply<?php endif; ?>
                     </div>
                     <div class="col-md-2">
-                      <?php if(empty($_SESSION['userName'])): ?><button  class="btn btn-primary disabled">回复</button>
+                      <?php if(empty($_SESSION['userName'])): ?><button  class="btn btn-primary disabled">Reply</button>
                       <?php else: ?>
-                      <button  class="btn btn-primary submitMyAnswer">回复</button><?php endif; ?>
+                      <button  class="btn btn-primary submitMyAnswer">Reply</button><?php endif; ?>
                     </div>
                   </div>
                 </form>
@@ -407,11 +408,11 @@ $("#searchForm").submit();
           <div class="col-md-3">
             <div class="right-content">
               <a class="btn btn-success btn-lg btn-block" href="<?php echo U('Ask/index');?>">
-	<span class="glyphicon glyphicon-edit"></span>我要提问
+	<span class="glyphicon glyphicon-edit"></span>I have a question
 </a>
 <br>
 <div class="panel panel-default">
-	<div class="panel-heading">本月热门问题</div>
+	<div class="panel-heading">Monthly trending topic</div>
 	<div class="panel-body" style="padding-left:0px;">
 		<ul>
 			<?php if(is_array($hotList)): foreach($hotList as $key=>$hotQuestion): ?><li class="hot">

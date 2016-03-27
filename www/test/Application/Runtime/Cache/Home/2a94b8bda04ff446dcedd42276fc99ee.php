@@ -101,14 +101,18 @@ $(document).ready(function(){
         <small>[ Price：<?php echo ($question["score"]); ?> ]</small>
         <span class="pull-right gray"><?php echo ($question["time"]); ?></span>
       </div>
+
       <div class="media-action">
+        <!--
         <div style="text-indent:10px;">
+
           <span class="glyphicon glyphicon-tags"></span>
           Tag:
-          <?php if(is_array($question["label"])): foreach($question["label"] as $key=>$singleLabel): ?><span class="label myLabel"><?php echo ($singleLabel); ?>
+          <?php if(is_array($question["tagins"])): foreach($question["tagins"] as $key=>$tagin): ?><span class="label myLabel"> <?php echo ($tagin["areaName"]); ?>
           </span>
-          &nbsp;<?php endforeach; endif; ?>
+            &nbsp;<?php endforeach; endif; ?>
         </div>
+        -->
         <div>
           <span class="pull-right">
           <span class="glyphicon glyphicon-eye-open gray">View<?php echo ($question["view"]); ?></span>
@@ -122,6 +126,10 @@ $(document).ready(function(){
     </div>
   </li><?php endforeach; endif; ?>
   <div><?php echo ($page); ?></div>
+
+  <div>
+  <?php if(is_array($tagins)): foreach($tagins as $key=>$tagin): echo ($tagin); endforeach; endif; ?>
+  </div>
 </ul>
 						</div>
 					</div>

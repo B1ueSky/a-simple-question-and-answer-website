@@ -107,9 +107,9 @@
                                                 <ul  style="list-style-type:none">
                                                     <foreach name="answerList" item="answer">
                                                     <li class="answerBox">
-                                                        问题:
+                                                        Question:
                                                         <a href="{:U('Question/questionPage',array('id'=>$answer['questionId']))}">{$answer.Question.title}</a><br>
-                                                        回复:
+                                                        Reply:
                                                         <a href="{:U('UserInfo/index',array('userId'=>$answer['ReplyUser']['userId']))}">{$answer.ReplyUser.userName}</a>
                                                         <span class="pull-right gray">{$answer.time}</span>
                                                         <div style="text-indent:28px;">
