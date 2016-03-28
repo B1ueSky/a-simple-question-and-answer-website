@@ -81,7 +81,7 @@ $(document).ready(function(){
 				<div class="row">
 					<div class="col-md-8 col-md-offset-1">
 						<div class="left-content">
-							<h3><b>登录</b></h3>
+							<h3><b>Login</b></h3>
 							<form class="form-horizontal" action="<?php echo U('Login/login');?>" method="post">
 								<div class="form-group">
 									<label for="email" class="col-md-2 control-label">Email</label>
@@ -118,7 +118,7 @@ $(document).ready(function(){
 					<div class="col-md-3">
 						<div class="right-content">
 							<a class="btn btn-success btn-lg btn-block" href="<?php echo U('Ask/index');?>">
-	<span class="glyphicon glyphicon-edit"></span>I have a question
+	<span class="glyphicon glyphicon-edit"></span> I have a question
 </a>
 <br>
 <div class="panel panel-default">

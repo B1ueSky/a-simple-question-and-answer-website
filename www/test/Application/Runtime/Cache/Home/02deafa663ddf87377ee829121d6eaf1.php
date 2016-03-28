@@ -36,7 +36,7 @@
 			</ul>
 			
 			<form id="searchForm" class="navbar-form navbar-left form-inline" method="post">
-				<input class="form-control" style="width:280px;" type="text" name="keyword" placeholder="Keyword">
+				<input class="form-control" style="width:170px;" type="text" name="keyword" placeholder="Keyword">
 				<span class="input-group">
 				<span class="input-group-btn">
 				<button class="btn btn-default" id="searchQuestion">
@@ -159,7 +159,7 @@ $(document).ready(function(){
           <div class="col-md-3">
             <div class="right-content">
               <a class="btn btn-success btn-lg btn-block" href="<?php echo U('Ask/index');?>">
-	<span class="glyphicon glyphicon-edit"></span>I have a question
+	<span class="glyphicon glyphicon-edit"></span> I have a question
 </a>
 <br>
 <div class="panel panel-default">

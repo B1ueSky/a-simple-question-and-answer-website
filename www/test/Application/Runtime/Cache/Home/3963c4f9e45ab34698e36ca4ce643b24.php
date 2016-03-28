@@ -21,7 +21,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button>
-			<a href="<?php echo U('Index/index');?>" class="navbar-brand sitetitle">Q&A <span style="font-size:12px"> 一个简单的问答网站</span></a>
+			<a href="<?php echo U('Index/index');?>" class="navbar-brand sitetitle">TeachTalk <span style="font-size:12px"> The best answers, by teachers, for teachers</span></a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="mycollaspse">
@@ -32,22 +32,22 @@
 			</ul>
 			
 			<form id="searchForm" class="navbar-form navbar-left form-inline" method="post">
-				<input class="form-control" style="width:280px;" type="text" name="keyword" placeholder="输入你想知道的内容">
+				<input class="form-control" style="width:280px;" type="text" name="keyword" placeholder="Keyword">
 				<span class="input-group">
 				<span class="input-group-btn">
-				<button class="btn btn-default" id="searchUser">
-				<span class="glyphicon glyphicon-user" style="color:gray">
-				</span>用户</button>
 				<button class="btn btn-default" id="searchQuestion">
 				<span class="glyphicon glyphicon-question-sign" style="color:gray"></span>
-				问题</button>
+				Question</button>
+				<button class="btn btn-default" id="searchUser">
+				<span class="glyphicon glyphicon-user" style="color:gray">
+				</span>User</button>
 				</span>
 				</span>
 			</form>
 			<ul class="navbar-nav navbar-right nav">
 				
-				<?php if(empty($_SESSION['userName'])): ?><li><a id="login" href="<?php echo U('Login/loginPage');?>">登录</a></li>
-				<li><a id="register" href="<?php echo U('Register/registerPage');?>"  >注册</a></li>
+				<?php if(empty($_SESSION['userName'])): ?><li><a id="login" href="<?php echo U('Login/loginPage');?>">Login</a></li>
+				<li><a id="register" href="<?php echo U('Register/registerPage');?>"  >Register</a></li>
 				<?php else: ?>
 				<li>
 					<a  href="<?php echo U('UserInfo/index');?>">
@@ -56,7 +56,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="<?php echo U('Login/logout');?>">注销</a>
+					<a href="<?php echo U('Login/logout');?>">Log out</a>
 				</li><?php endif; ?>
 			</ul>
 		</div>
@@ -65,16 +65,16 @@
 <script src="/Public/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-$("#searchUser").click(function(e){
-	e.preventDefault();
-$("#searchForm").attr("action","<?php echo U('Search/searchUser');?>");
-$("#searchForm").submit();
-});
-$("#searchQuestion").click(function(e){
-	e.preventDefault();
-$("#searchForm").attr("action","<?php echo U('Search/searchQuestion');?>");
-$("#searchForm").submit();
-});
+	$("#searchQuestion").click(function(e){
+		e.preventDefault();
+		$("#searchForm").attr("action","<?php echo U('Search/searchQuestion');?>");
+		$("#searchForm").submit();
+	});
+	$("#searchUser").click(function(e){
+		e.preventDefault();
+	$("#searchForm").attr("action","<?php echo U('Search/searchUser');?>");
+	$("#searchForm").submit();
+	});
 });
 </script>
             <div class="container">
@@ -82,7 +82,7 @@ $("#searchForm").submit();
                     <div class="col-md-9">
                         <div class="left-content">
                             <h3 class="page-header">
-                            <?php if(!empty($keyword)): ?>“<span class="keywordText"><?php echo ($keyword); ?></span>”&nbsp;&nbsp;<?php endif; ?>搜索结果：
+                            <?php if(!empty($keyword)): ?>“<span class="keywordText"><?php echo ($keyword); ?></span>”&nbsp;&nbsp;<?php endif; ?>Search results：
                             </h3>
                             <ul class="media-list userList">
                                 <?php if(is_array($userList)): foreach($userList as $key=>$user): ?><li class="media user">
@@ -99,15 +99,15 @@ $("#searchForm").submit();
                                             
                                             <div style="text-indent:10px;">
                                                 <span>
-                                                签名：
-                                                <?php if(empty($user["signature"])): ?>TA什么都没写~
+                                                Signature：
+                                                <?php if(empty($user["signature"])): ?>Nothing...
                                                 <?php else: ?>
                                                 <?php echo ($user["signature"]); endif; ?>
                                                 </span>
                                             </div>
                                             <div style="text-indent:10px;">
-                                                <span>注册时间：<?php echo ($user["registerTime"]); ?></span>
-                                                <span style="padding-left:60px;">上次登录：<?php echo ($user["lastLoginTime"]); ?></span>
+                                                <span>Register time：<?php echo ($user["registerTime"]); ?></span>
+                                                <span style="padding-left:60px;">Last login：<?php echo ($user["lastLoginTime"]); ?></span>
                                             </div>
                                             <div><p class="gray questionContent" style="text-indent:28px;"><?php echo ($question["content"]); ?></p></div>
                                             <div>
@@ -123,11 +123,11 @@ $("#searchForm").submit();
                     <div class="col-md-3">
                         <div class="right-content">
                             <a class="btn btn-success btn-lg btn-block" href="<?php echo U('Ask/index');?>">
-	<span class="glyphicon glyphicon-edit"></span>我要提问
+	<span class="glyphicon glyphicon-edit"></span> I have a question
 </a>
 <br>
 <div class="panel panel-default">
-	<div class="panel-heading">本月热门问题</div>
+	<div class="panel-heading">Monthly trending topic</div>
 	<div class="panel-body" style="padding-left:0px;">
 		<ul>
 			<?php if(is_array($hotList)): foreach($hotList as $key=>$hotQuestion): ?><li class="hot">

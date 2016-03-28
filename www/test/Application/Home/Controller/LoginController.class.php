@@ -48,6 +48,7 @@ class LoginController extends Controller {
 		session( 'score', $user['score'] );
 		session( 'registerTime', format_date( $user['registerTime'] ) );
 		session( 'lastLoginTime', format_date( $user['lastLoginTime'] ) );
+		//session( 'lastLoginTime', format_date( $user['lastLoginTime'] ) );
 
 		$this->success( 'Success', U('Index/index') );
 	}

@@ -19,32 +19,32 @@ $diff = $_SERVER['REQUEST_TIME'] - $timer;
 $day = floor($diff / 86400);
 $free = $diff % 86400;
 if($day > 0) {
-return $day."天前";
+return $day." days ago";
 }else{
 if($free>0){
 $hour = floor($free / 3600);
 $free = $free % 3600;
 if($hour>0){
-return $hour."小时前";
+return $hour." hours ago";
 }else{
 if($free>0){
 $min = floor($free / 60);
 $free = $free % 60;
 if($min>0){
-return $min."分钟前";
+return $min." minutes ago";
 }else{
 if($free>0){
-return $free."秒前";
+return $free." seconds ago";
 }else{
-return '刚刚';
-}
-}
-}else{
-return '刚刚';
+return 'just now';
 }
 }
 }else{
-return '刚刚';
+return 'just now';
+}
+}
+}else{
+return 'just now';
 }
 }
 }
@@ -1035,7 +1035,7 @@ function redirect($url, $time=0, $msg='') {
     //多行URL地址支持
     $url        = str_replace(array("\n", "\r"), '', $url);
     if (empty($msg))
-        $msg    = "系统将在{$time}秒之后自动跳转到{$url}！";
+        $msg    = "We are going to {$url} in {$time} seconds！";
     if (!headers_sent()) {
         // redirect
         if (0 === $time) {
