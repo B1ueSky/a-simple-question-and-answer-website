@@ -32,7 +32,7 @@
 			</ul>
 			
 			<form id="searchForm" class="navbar-form navbar-left form-inline" method="post">
-				<input class="form-control" style="width:280px;" type="text" name="keyword" placeholder="Keyword">
+				<input class="form-control" style="width:170px;" type="text" name="keyword" placeholder="Keyword">
 				<span class="input-group">
 				<span class="input-group-btn">
 				<button class="btn btn-default" id="searchQuestion">
@@ -103,10 +103,10 @@ $(document).ready(function(){
                             </div>
                             <div class="infoText">
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <span> <b><?php echo ($_SESSION['userName']); ?></b>
-                                (<?php echo ($_SESSION['email']); ?>)
+                                <span> <b>  <?php echo ($_SESSION['userName']); ?></b>
+                                <!--(<?php echo ($_SESSION['email']); ?>)-->
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="#" id="editInfo" class="editInfo">Edit information</a>
+                                <a href="#" id="  editInfo" class="editInfo">Edit information</a>
                                 </span>
                                 <div id="detail">
                                     <label for="registerTime">Register time:</label>

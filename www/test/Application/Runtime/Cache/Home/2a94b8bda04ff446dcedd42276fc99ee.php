@@ -153,9 +153,20 @@ $(document).ready(function(){
 					</div>
 				</div>
 			</div>
-			<div id="footer">
+			
 
-</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div id="footer">
+        <nav class="navbar-default navbar footer" >
+            <div class="pull-left webInfo">
+                <div class="school"><span style="font-size:15px" "color: gray">We appreciate your great feed backs </span> </div>
+                <div>Contact email: feedback@teachtalk.com</div>
+
+            </div>
+
+        </nav>
+    </div>
+</nav>>
 		</div>
 		<script src="/Public/js/jquery-2.1.1.min.js"></script>
 		<script src="/Public/js/bootstrap.min.js"></script>

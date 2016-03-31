@@ -32,9 +32,9 @@ h1{ font-size: 32px; line-height: 48px; }
 <?php if(isset($e['file'])) {?>
 	<div class="info">
 		<div class="title">
-			<h3>错误位置</h3>
+			<h3>Wrong location</h3>
 		</div>
-		<a href="{:U('Index/index')}">回到首页</a>
+		<a href="{:U('Index/index')}">Back to the home page</a>
 		<div class="text">
 			<p>FILE: <?php echo $e['file'] ;?> &#12288;LINE: <?php echo $e['line'];?></p>
 		</div>

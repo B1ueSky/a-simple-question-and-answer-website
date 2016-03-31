@@ -31,7 +31,7 @@ class Page {
     // 分页的栏的总页数  
     protected $coolPages   ;  
     // 分页显示定制  
-    protected $config  =    array('header'=>'条记录','prev'=>'上一页','next'=>'下一页','first'=>'第一页','last'=>'<span id="lastspan">最后一页</span>','theme'=>'<ul><li><span> %totalRow% %header% %nowPage%/%totalPage% 页</span></li> %first%  %upPage% %prePage%  %linkPage% %downPage%  %nextPage% %end%</ul>');  
+    protected $config  =    array('header'=>'Records','prev'=>'previous page','next'=>'next page','first'=>'first page','last'=>'<span id="lastspan">lastpage</span>','theme'=>'<ul><li><span> %totalRow% %header% %nowPage%/%totalPage% page</span></li> %first%  %upPage% %prePage%  %linkPage% %downPage%  %nextPage% %end%</ul>');
     // 默认分页变量名  
     protected $varPage;  
     /** 
@@ -112,7 +112,7 @@ class Page {
             $prePage    =   '';  
         }else{  
             $preRow     =   $this->nowPage-$this->rollPage;  
-            $prePage    =   "<li><a href='".str_replace('__PAGE__',$preRow,$url)."' >上".$this->rollPage."页</a></li>";  
+            $prePage    =   "<li><a href='".str_replace('__PAGE__',$preRow,$url)."' >last".$this->rollPage."page</a></li>";
             $theFirst   =   "<li><a href='".str_replace('__PAGE__',1,$url)."' >".$this->config['first']."</a></li>";  
         }  
         if($nowCoolPage == $this->coolPages){  
@@ -121,7 +121,7 @@ class Page {
         }else{  
             $nextRow    =   $this->nowPage+$this->rollPage;  
             $theEndRow  =   $this->totalPages;  
-            $nextPage   =   "<li><a href='".str_replace('__PAGE__',$nextRow,$url)."' >下".$this->rollPage."页</a></li>";  
+            $nextPage   =   "<li><a href='".str_replace('__PAGE__',$nextRow,$url)."' >next".$this->rollPage."page</a></li>";
             $theEnd     =   "</li><a href='".str_replace('__PAGE__',$theEndRow,$url)."' >".$this->config['last']."</a></li>";  
         }  
         // 1 2 3 4 5  

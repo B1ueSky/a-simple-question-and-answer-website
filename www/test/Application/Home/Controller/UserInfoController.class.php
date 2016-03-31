@@ -177,7 +177,7 @@ class UserInfoController extends Controller {
         $count = $Question->where( "userId=$userId" )->order( "questionId desc" )->count();
 
         $Page = new \Think\Page( $count, 10 );
-        $Page->setConfig( 'theme', "<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage% 页</a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>" );
+        $Page->setConfig( 'theme', "<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage% </a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>" );
         $show = $Page->show();
         $askList = $Question->where( "userId=$userId" )->order( "questionId desc" )->relation( true )->page( $pageNum.',10' )->select();
 
