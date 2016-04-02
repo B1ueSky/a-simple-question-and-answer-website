@@ -5,14 +5,14 @@
         <div class="media-content" >
             <p>
             <span><a href="<?php echo U('UserInfo/index',array('userId'=>$subAnswer['User']['userId']));?>"><?php echo ($subAnswer["User"]["userName"]); ?></a>
-            <?php if(!empty($subAnswer["ReplyUser"])): ?><span>回复<a href="<?php echo U('UserInfo/index',array('userId'=>$subAnswer['ReplyUser']['userId']));?>"><?php echo ($subAnswer["ReplyUser"]["userName"]); ?></a></span><?php endif; ?>
+            <?php if(!empty($subAnswer["ReplyUser"])): ?><span>Reply<a href="<?php echo U('UserInfo/index',array('userId'=>$subAnswer['ReplyUser']['userId']));?>"><?php echo ($subAnswer["ReplyUser"]["userName"]); ?></a></span><?php endif; ?>
             :
             </span>
             <?php echo ($subAnswer["content"]); ?>
             </p>
             <span class="pull-right gray" style="padding-right:10px;">
             <button class="btn btn-link answer_to">
-            回复
+            Reply
             </button>
             <span style="display:none" class="user_to_id"><?php echo ($subAnswer["userId"]); ?></span>
             <span style="display:none" class="user_to_name"><?php echo ($subAnswer["User"]["userName"]); ?></span>

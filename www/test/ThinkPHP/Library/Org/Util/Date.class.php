@@ -126,7 +126,7 @@ class Date {
      protected $CTIME;
 
      // 星期的输出
-     protected $Week = array("日","一","二","三","四","五","六");
+     protected $Week = array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
 
     /**
      * 架构函数

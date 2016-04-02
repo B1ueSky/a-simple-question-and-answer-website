@@ -1116,3 +1116,54 @@ INFO: [ app_end ] --START--
 INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000245s ]
 INFO: [ app_end ] --END-- [ RunTime:0.000266s ]
 
+[ 2016-04-01T12:04:34+08:00 ] ::1 /index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001822s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000907s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000955s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/a-simple-question-and-answer-website/www/test/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: select * from t_question  where DATE_SUB(CURDATE(),INTERVAL 1 MONTH) <= date(time) order by view desc limit 0,10 [ RunTime:0.019865s ]
+SQL: select * from t_question  where DATE_SUB(CURDATE(),INTERVAL 1 MONTH) <= date(time) order by view desc limit 0,10 [ RunTime:0.000775s ]
+NOTIC: [8] Undefined index: p /Applications/XAMPP/xamppfiles/htdocs/a-simple-question-and-answer-website/www/test/Application/Home/Controller/IndexController.class.php 第 8 行.
+SQL: SHOW COLUMNS FROM `t_question` [ RunTime:0.007314s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `t_question` LIMIT 1   [ RunTime:0.000835s ]
+NOTIC: [8] Undefined index: limit /Applications/XAMPP/xamppfiles/htdocs/a-simple-question-and-answer-website/www/test/ThinkPHP/Library/Think/Db.class.php 第 788 行.
+SQL: SELECT * FROM `t_question` ORDER BY questionId desc LIMIT 0,20   [ RunTime:0.001634s ]
+SQL: SHOW COLUMNS FROM `t_user` [ RunTime:0.001201s ]
+SQL: SELECT * FROM `t_user` WHERE ( 1=1 AND userId='16' ) LIMIT 1   [ RunTime:0.000280s ]
+SQL: SHOW COLUMNS FROM `t_answer` [ RunTime:0.000942s ]
+SQL: SELECT * FROM `t_answer` WHERE ( 1=1 AND questionId='11' )  [ RunTime:0.000598s ]
+SQL: SHOW COLUMNS FROM `t_tagin` [ RunTime:0.000804s ]
+SQL: SELECT * FROM `t_tagin` WHERE ( 1=1 AND questionId='11' )  [ RunTime:0.000185s ]
+SQL: SELECT * FROM `t_answer` WHERE ( 1=1 AND answerId='' ) LIMIT 1   [ RunTime:0.000111s ]
+SQL: SHOW COLUMNS FROM `t_collect` [ RunTime:0.000903s ]
+SQL: SELECT * FROM `t_collect` WHERE ( 1=1 AND questionId='11' )  [ RunTime:0.000247s ]
+SQL: SELECT * FROM `t_user` WHERE ( 1=1 AND userId='15' ) LIMIT 1   [ RunTime:0.000205s ]
+SQL: SELECT * FROM `t_answer` WHERE ( 1=1 AND questionId='10' )  [ RunTime:0.000497s ]
+SQL: SELECT * FROM `t_tagin` WHERE ( 1=1 AND questionId='10' )  [ RunTime:0.000142s ]
+SQL: SELECT * FROM `t_answer` WHERE ( 1=1 AND answerId='' ) LIMIT 1   [ RunTime:0.000100s ]
+SQL: SELECT * FROM `t_collect` WHERE ( 1=1 AND questionId='10' )  [ RunTime:0.000108s ]
+SQL: SHOW COLUMNS FROM `t_area` [ RunTime:0.000783s ]
+NOTIC: [8] Use of undefined constant Tagin - assumed 'Tagin' /Applications/XAMPP/xamppfiles/htdocs/a-simple-question-and-answer-website/www/test/Application/Home/Controller/QuestionController.class.php 第 19 行.
+NOTIC: [8] Array to string conversion /Applications/XAMPP/xamppfiles/htdocs/a-simple-question-and-answer-website/www/test/Application/Home/Controller/QuestionController.class.php 第 19 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/a-simple-question-and-answer-website/www/test/Application/Home/Controller/QuestionController.class.php 第 19 行.
+NOTIC: [8] Use of undefined constant Tagin - assumed 'Tagin' /Applications/XAMPP/xamppfiles/htdocs/a-simple-question-and-answer-website/www/test/Application/Home/Controller/QuestionController.class.php 第 19 行.
+NOTIC: [8] Array to string conversion /Applications/XAMPP/xamppfiles/htdocs/a-simple-question-and-answer-website/www/test/Application/Home/Controller/QuestionController.class.php 第 19 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/a-simple-question-and-answer-website/www/test/Application/Home/Controller/QuestionController.class.php 第 19 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000030s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000066s ]
+NOTIC: [8] Undefined index: tagins /Applications/XAMPP/xamppfiles/htdocs/a-simple-question-and-answer-website/www/test/Application/Runtime/Cache/Home/2a94b8bda04ff446dcedd42276fc99ee.php 第 111 行.
+NOTIC: [8] Undefined index: tagins /Applications/XAMPP/xamppfiles/htdocs/a-simple-question-and-answer-website/www/test/Application/Runtime/Cache/Home/2a94b8bda04ff446dcedd42276fc99ee.php 第 111 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014352s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014387s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000332s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000355s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000565s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000599s ]
+

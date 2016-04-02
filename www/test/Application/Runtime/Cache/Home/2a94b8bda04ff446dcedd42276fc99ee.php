@@ -159,7 +159,7 @@ $(document).ready(function(){
     <div id="footer">
         <nav class="navbar-default navbar footer" >
             <div class="pull-left webInfo">
-                <div class="school"><span style="font-size:15px" "color: gray">We appreciate your great feed backs </span> </div>
+                <div class="school"><span style="font-size:15px" "color: gray">We appreciate your great feedbacks  </span> </div>
                 <div>Contact email: feedback@teachtalk.com</div>
 
             </div>

@@ -239,7 +239,7 @@ $(document).ready(function(){
                         </div>
                         <input disabled="disabled" style="display:none" class="answerId" value="<?php echo ($bestAnswer["answerId"]); ?>">
                         <input style="display:none" disabled="disabled" class="user_to_id">
-                        <input type="text" class="form-control mySubAnswer" style="width:90%">
+                        <input type="text" class="form-control mySubAnswer" style=" width:90%">
                         <button  class="btn btn-default submitSubAnswer">Reply</button>
                       </form><?php endif; ?>
                     </div>
@@ -267,9 +267,22 @@ $(document).ready(function(){
                       <?php echo ($otherAnswer["content"]); ?>
                       </p>
                     </div>
+                    <form method="post" class="form-inline editAnswerForm" style="display:none">
+                      <div class="input-group">
+                        <span  class="answer_to_label" style="display:none">Submit</span>
+                        <span  style="display:none" type="text" class="user_to_name"></span>
+                        <input  type="button" style="display:none" class="btn btn-default btn-xs cancel_answer_to"  value="X">
+                      </div>
+                      <input disabled="disabled" style="display:none" class="answerId" value="<?php echo ($otherAnswer["answerId"]); ?>">
+                      <input style="display:none" disabled="disabled" class="user_to_id">
+                      <input type="text" class="form-control" style="width:90%" value="<?php echo ($otherAnswer["content"]); ?>">
+                      <button  class="btn btn-default submitEditAnswer">Submit</button>
+                    </form>
                     <div class="media-action">
                       <div class="pull-right">
                         <?php if(!empty($question["acceptable"])): ?><a href="<?php echo U('Question/accept',array('questionId'=>$question['questionId'],'bestAnswerId'=>$otherAnswer['answerId']));?>">Accepted</a><?php endif; ?>
+                        <?php if(!empty($_SESSION['userId'])): if($_SESSION['userId'] == $otherAnswer['User']['userId']): ?><a class="quote-btn editAnswer" href="#edit">Edit</a>
+                            <a class="quote-btn hideEditAnswer" style="display:none;" href="#edit">Cancel</a><?php endif; endif; ?>
                         <a class="quote-btn subAnswer" href="#answer">Reply(<span class="subAnswerNum"><?php echo (count($otherAnswer["Subanswer"])); ?></span>)</a>
                         <a class="quote-btn hideSubAnswer" style="display:none;" href="#answer">Hide reply</a>
                         <?php if(($otherAnswer["enable"] == 1) or (empty($_SESSION['userId'])) ): ?><button class="btn btn-default disabled"><span class="glyphicon glyphicon-thumbs-up"></span><?php echo ($otherAnswer["up"]); ?></button>
@@ -454,6 +467,7 @@ $(document).ready(function(){
     }
     });
     });
+
     $(".submitMyAnswer").click(function(e){
     e.preventDefault();
     $(this).parentsUntil('.myAnswer').find("form").ajaxSubmit({
@@ -603,6 +617,32 @@ $(document).ready(function(){
     $(this).hide();
     });
     });
+
+
+    $(".editAnswer").livequery(function(){
+      $(this).click(function(){
+        $('.editAnswer').show();
+        $('.hideEditAnswer').hide();
+        var answer = $(this).parentsUntil('.answer');
+        answer.find('.media-content').hide();
+        answer.find('.editAnswerForm').show();
+        answer.find('.hideEditAnswer').show();
+        $(this).hide();
+      });
+    }
+    );
+    $(".hideEditAnswer").livequery(function(){
+      $(this).click(function(){
+        $('.editAnswer').show();
+        $('.hideEditAnswer').hide();
+        var answer = $(this).parentsUntil('.answer');
+        answer.find('.editAnswerForm').hide();
+        answer.find('.media-content').show();
+        answer.find('.editAnswer').show();
+        $(this).hide();
+      });
+    }
+    );
     }
     );
     </script>

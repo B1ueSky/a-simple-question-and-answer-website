@@ -195,7 +195,7 @@ class UserInfoController extends Controller {
 
         $count = $Answer->where( "userId=$userId" )->order( "answerId desc" )->count();
         $Page = new \Think\Page( $count, 10 );
-        $Page->setConfig( 'theme', "<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage% 页</a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>" );
+        $Page->setConfig( 'theme', "<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage% </a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>" );
         $show = $Page->show();
 
         $answerList = $Answer->where( "userId=$userId" )->order( "answerId desc" )->relation( true )->page( $pageNum.',10' )->select();
@@ -222,7 +222,7 @@ class UserInfoController extends Controller {
         $count = $Answer->where("replyUserId=$userId or (isnull(replyUserId) and parentAnswerId in (select answerId as id from t_answer as t where t.userId = $userId)) or (isnull(parentAnswerId) and questionId in (select questionId from t_question where userId=$userId))")->order("answerId desc")->count();
         
         $Page = new \Think\Page($count,10);
-        $Page->setConfig('theme',"<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage% 页</a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>");
+        $Page->setConfig('theme',"<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage% </a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>");
         $show = $Page->show();
 
         $replyList = $Answer->where("replyUserId=$userId or (isnull(replyUserId) and parentAnswerId in (select answerId as id from t_answer as t where t.userId = $userId)) or (isnull(parentAnswerId) and questionId in (select questionId from t_question where userId=$userId))")->order("answerId desc")->relation(true)->page($pageNum.',10')->select();
@@ -241,7 +241,7 @@ class UserInfoController extends Controller {
         $count = $Collection->where( "userId=$userId" )->count();
 
         $Page = new \Think\Page( $count, 10 );
-        $Page->setConfig( 'theme', "<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage% 页</a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>" );
+        $Page->setConfig( 'theme', "<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage% </a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>" );
         $show = $Page->show();
 
         $collectionList =  $Collection->where( "userId=$userId" )->order( "collectId desc" )->relation( "Question" )->page( $pageNum.',10' )->select();
@@ -259,7 +259,7 @@ class UserInfoController extends Controller {
         $count = $Interest->where( "userId=$userId" )->count();
 
         $Page = new \Think\Page( $count, 10 );
-        $Page->setConfig( 'theme', "<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage% 页</a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>" );
+        $Page->setConfig( 'theme', "<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage% </a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>" );
         $show = $Page->show();
 
         $interestList =  $Interest->where( "userId=$userId" )->order( "interestId desc" )->relation( "Area" )->page( $pageNum.',10' )->select();
@@ -291,7 +291,7 @@ class UserInfoController extends Controller {
         $count = $Expert->where( "userId=$userId" )->count();
 
         $Page = new \Think\Page( $count, 10 );
-        $Page->setConfig( 'theme', "<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage% 页</a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>" );
+        $Page->setConfig( 'theme', "<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage%</a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>" );
         $show = $Page->show();
 
         $expertList =  $Expert->where( "userId=$userId" )->order( "expertId desc" )->relation( "Area" )->page( $pageNum.',10' )->select();

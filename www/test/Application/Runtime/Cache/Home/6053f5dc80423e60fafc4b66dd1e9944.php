@@ -301,7 +301,7 @@ $(document).ready(function(){
                                         <form class="form-horizontal addInterestForm" action="<?php echo U('UserInfo/saveNewInterestedArea');?>" method="post">
                                             <input type="hidden" name="newAreaId" value="<?php echo ($area["areaId"]); ?>">
                                             <div class="form-group">
-                                                <div class="col-md-offset-7 col-md-6">
+                                                <div class="col-md-offset-15 col-md-6">
                                                     <button class="btn btn-primary addInterest">Add to Interested</button>
                                                 </div>
                                             </div>
