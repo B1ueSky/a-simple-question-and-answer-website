@@ -1,1 +1,0 @@
-a:6:{i:0;s:9:"collectId";i:1;s:10:"questionId";i:2;s:6:"userId";i:3;s:4:"time";s:3:"_pk";s:9:"collectId";s:5:"_type";a:4:{s:9:"collectId";s:7:"int(11)";s:10:"questionId";s:7:"int(11)";s:6:"userId";s:7:"int(11)";s:4:"time";s:4:"date";}}
