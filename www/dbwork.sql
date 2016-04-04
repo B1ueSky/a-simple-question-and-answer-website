@@ -76,6 +76,7 @@ CREATE TABLE `t_question` (
   `time` date DEFAULT NULL,
   `solved` tinyint(1) DEFAULT NULL,
   `bestAnswer` int(11) DEFAULT NULL,
+  `isPublic` bool DEFAULT 1,
   PRIMARY KEY (`questionId`),
   KEY `FK_t_question_userId` (`userId`),
   KEY `fk_question_bestAnswer` (`bestAnswer`),
@@ -226,9 +227,28 @@ CREATE TABLE `t_tagin` (
   CONSTRAINT `FK_t_tagin_questionId` FOREIGN KEY (`questionId`) REFERENCES `t_question` (`questionId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
-/*Data for the table `t_expert` */
+/*Data for the table `t_tagin` */
 
 -- insert  into `t_tagin`(`taginId`,`areaId`,`questionId`) values (9,10,5),(10,11,5),(11,11,6),(12,11,7);
+
+
+/*Table structure for table `t_canview` */
+
+DROP TABLE IF EXISTS `t_canview`;
+
+CREATE TABLE `t_canview` (
+  `canviewId` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) DEFAULT NULL,
+  `questionId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`canviewId`),
+  KEY `FK_t_canview_questionId` (`questionId`),
+  KEY `FK_t_canview_userId` (`userId`),
+  CONSTRAINT `FK_t_canview_userId` FOREIGN KEY (`userId`) REFERENCES `t_user` (`userId`),
+  CONSTRAINT `FK_t_canview_questionId` FOREIGN KEY (`questionId`) REFERENCES `t_question` (`questionId`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+/*Data for the table `t_canview` */
+
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

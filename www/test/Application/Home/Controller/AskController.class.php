@@ -16,6 +16,7 @@ class AskController extends Controller {
 		$score = $_POST['score'];
 		//$label = $_POST['label'];
 		$areas = $_POST['areaList'];
+		$canview = $_POST['canview'];
 
 		if ( empty( $score ) ) {
 			$score = 0;
@@ -43,6 +44,28 @@ class AskController extends Controller {
 
 
 		$User = D( 'user' );
+
+		# check canview emails
+        # split the string by space.
+		$emails = preg_split('/[\s]+/', $canview, -1, PREG_SPLIT_NO_EMPTY);
+		$userId_list = array();
+
+        foreach ($emails as $email) {
+
+			$condition['email'] = $email;
+			$user = $User->where($condition)->select();
+
+            if (count($user) <= 0) {
+				$this->ajaxReturn( "Email ".$email." does not exist." );
+				return;
+			} else {
+                foreach ($user as $u)
+                {
+                    $userId_list[] += $u['userId'];
+                }
+            }
+        }
+
 		$userId = session( 'userId' );
 		$user = $User->find( $userId );
 		$haveScore = $user['score'];
@@ -70,10 +93,14 @@ class AskController extends Controller {
 		//$data['label'] = $label;
 		$data['view'] = 0;
 		$data['time'] = date( 'Y-m-d H:i:s', time() );
+        if (empty($userId_list)) {
+            $data['isPublic'] = True;
+        } else {
+            $data['isPublic'] = False;
+        }
 		$questionId = $Question->add( $data );
 
 		# add tagin areas
-
 		$Tagin = D('Tagin');
 		$data = array();
 		foreach ($areas as $area) {
@@ -82,12 +109,26 @@ class AskController extends Controller {
 			$Tagin->add($data);
 		}
 
+        # add canview relations if private
+        if (!empty($userId_list))
+        {
+            $userId_list[] += session( 'userId' ); # add user themselves
+            $Canview = D('Canview');
+            $data = array();
+            foreach ($userId_list as $userId)
+            {
+                $data['userId']     = $userId;
+                $data['questionId'] = $questionId;
+                $Canview->add($data);
+            }
+        }
+
 		$this->ajaxReturn( "success" );
 	}
 
 	protected function _initialize() {
 		$this->where = 'Ask';
-		$this->title = '提问';
+		$this->title = 'Ask Question';
 
 		A( 'AutoLogin' )->autoLogin();
 		A( 'Hot' )->getHotList();
