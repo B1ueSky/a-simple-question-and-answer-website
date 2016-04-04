@@ -11,7 +11,26 @@ class QuestionController extends Controller {
         $Page = new \Think\Page( $count, 10 );
         $Page->setConfig( 'theme', "<ul class='pagination'><li><a>%totalRow% %header% %nowPage%/%totalPage%</a></li><li>%upPage%</li><li>%first%</li><li>%prePage%</li><li>%linkPage%</li><li>%nextPage%</li><li>%end%</li><li>%downPage%</li></ul>" );
         $show = $Page->show();
-        $list = $Question->page( $pageNum.',10' )->order( "questionId desc" )->relation( true )->select();
+
+        # for public questions
+        $condition['isPublic'] = True;
+
+        # for private questions
+        if (!empty(session("userId"))) {
+            # get accessable private questions
+            $Canview = D('Canview');
+            $canviews = $Canview->field('questionId')->where('userId = '.session("userId"))->select();
+            $question_ids = array('');
+
+            # flatten the array
+            foreach ($canviews as $canview) {
+                $question_ids[] += $canview['questionId'];
+            }
+            $condition['questionId'] = array('in', $question_ids);
+            $condition['_logic'] = 'OR';
+        }
+
+        $list = $Question->where($condition)->page( $pageNum.',10' )->order( "questionId desc" )->relation( true )->select();
 
         $Area = D('Area');
         $tagins = array();
