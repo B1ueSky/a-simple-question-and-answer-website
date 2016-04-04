@@ -234,7 +234,7 @@
                     <div class="media-action">
                       <div class="pull-right">
                         <notempty name="question.acceptable">
-                        <a href="{:U('Question/accept',array('questionId'=>$question['questionId'],'bestAnswerId'=>$otherAnswer['answerId']))}">Accepted</a>
+                        <a href="{:U('Question/accept',array('questionId'=>$question['questionId'],'bestAnswerId'=>$otherAnswer['answerId']))}">Accept</a>
                         </notempty>
                         <notempty name="_SESSION['userId']">
                           <if condition="$_SESSION['userId'] eq $otherAnswer['User']['userId']">
