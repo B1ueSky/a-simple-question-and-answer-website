@@ -11,6 +11,27 @@ class SearchController extends Controller {
         if ( empty( $pageNum ) ) $pageNum = 1;
         $map['title|content|label'] =array( 'like', "%$keyword%" );
 
+        # for public questions
+        $condition['isPublic'] = True;
+
+        # for private questions
+        if (!empty(session("userId"))) {
+            # get accessable private questions
+            $Canview = D('Canview');
+            $canviews = $Canview->field('questionId')->where('userId = '.session("userId"))->select();
+            $question_ids = array('');
+
+            # flatten the array
+            foreach ($canviews as $canview) {
+                $question_ids[] += $canview['questionId'];
+            }
+            $condition['questionId'] = array('in', $question_ids);
+            $condition['_logic'] = 'OR';
+        }
+
+        $map['_complex'] = $condition;
+
+
         $Question = D( 'Question' );
         $count = $Question->where( $map )->count();
         $Page = new \Think\Page( $count, 10 );
