@@ -28,9 +28,7 @@ class SearchController extends Controller {
             $condition['questionId'] = array('in', $question_ids);
             $condition['_logic'] = 'OR';
         }
-
         $map['_complex'] = $condition;
-
 
         $Question = D( 'Question' );
         $count = $Question->where( $map )->count();
