@@ -30,17 +30,17 @@ class AuthController extends Controller {
     $user = $User->find( $userId );
     $score = $user['score'];
     if ( $score>=10 ) {
-      if ( $questionCount>=5 ) {
+      if ( $questionCount>=15 ) {
         $result['success'] = false;
-        $result['info'] = "You can ask at most 5 question a day since you have".$score."";
+        $result['info'] = "You can ask at most 15 questions in one day since you have".$score."";
       }else {
         $result['success'] = true;
       }
 
     }else {
-      if ( $questionCount>=3 ) {
+      if ( $questionCount>=7 ) {
         $result['success'] = false;
-        $result['info'] = "You can ask at most 3 question a day since you have".$score."";
+        $result['info'] = "You can ask at most 7 questions in one day since you have".$score."";
       }else {
         $result['success'] = true;
       }
