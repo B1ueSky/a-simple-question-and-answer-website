@@ -27,7 +27,7 @@
                             </div>
                             <div class="infoText">
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <span><b>{$other['userName']}</b>({$other['email']})</span>
+                                <span><b>{$other['userName']}</b></span>
                                 <div id="detail">
                                     <label for="registerTime">Register time:</label>
                                     &nbsp;&nbsp;
@@ -48,6 +48,16 @@
                                     <else />
                                     {$other['signature']}
                                     </empty>
+                                        <br/>
+                                                   <label for="grade">Teaching Grade:</label>
+                                    &nbsp;&nbsp;
+                                    <span id="grade">{$other['grade']}</span>
+                                    <br/>
+
+                                    <label for="subject">Teaching Subject:</label>
+                                    &nbsp;&nbsp;
+                                    <span id="subject">{$other['subject']}</span>
+
                                     </span>
                                 </div>
                             </div>

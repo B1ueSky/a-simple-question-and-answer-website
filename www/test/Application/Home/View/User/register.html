@@ -16,36 +16,79 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-md-offset-1">
+
             <div class="left-content">
+
               <h3><b>Register</b></h3>
               <form class="form-horizontal" action="{:U('Register/register')}" method="post" role="form">
+
                 <div class="form-group">
                   <label for="email" class="col-md-2 control-label">Email</label>
-                  <div class="col-md-4">
+                  <div class="col-md-5">
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email" required="required" value="{$typed['email']}">
                     <span class="error" id="emailError">{$error['email']}</span>
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <label for="teachID" class="col-md-2 control-label">Teaching License Number</label>
+                  <div class="col-md-5">
+                    <input type="text" class="form-control" id="teachID" name="teachID" placeholder="Teaching License Number"  required="required" value="{$typed['teachID']}">
+                    <span class="error" id="teachIDError">{$error['teachID']}</span>
+                  </div>
+                </div>
+
                 <div class="form-group">
                   <label for="userName" class="col-md-2 control-label">Username</label>
-                  <div class="col-md-4">
+                  <div class="col-md-5">
                     <input type="text" class="form-control" id="userName" name="userName" placeholder="Username"  required="required" value="{$typed['userName']}">
                     <span class="error" id="userNameError">{$error['userName']}</span>
                   </div>
                 </div>
 
+                <div class="form-group">
+                  <label for="geoLocation" class="col-md-2 control-label">Geographic Location</label>
+                  <div class="col-md-5">
+                    <input type="text" class="form-control" id="geoLocation" name="geoLocation" placeholder="Geographic Location"  required="required" value="{$typed['geoLocation']}">
+                    <span class="error" id="geoLocationError">{$error['geoLocation']}</span>
+                  </div>
+                </div>
 
+                <div class="form-group">
+                  <label for="school" class="col-md-2 control-label"> School You Teach At</label>
+                  <div class="col-md-5">
+                    <input type="text" class="form-control" id="school" name="school" placeholder=" School You Teach At"  required="required" value="{$typed['school']}">
+                    <span class="error" id="schoolError">{$error['school']}</span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="grade" class="col-md-2 control-label"> Grade Level You Teach</label>
+                  <div class="col-md-5">
+                    <input type="text" class="form-control" id="grade" name="grade" placeholder="Grade Level You Teach"  required="required" value="{$typed['grade']}">
+                    <span class="error" id="gradeError">{$error['grade']}</span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="subject" class="col-md-2 control-label"> Subject You Teach</label>
+                  <div class="col-md-5">
+                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject You Teach"  required="required" value="{$typed['subject']}">
+                    <span class="error" id="subjectError">{$error['subject']}</span>
+                  </div>
+                </div>
 
                 <div class="form-group">
                   <label for="password" class="col-md-2 control-label">Password</label>
-                  <div class="col-md-4">
+                  <div class="col-md-5">
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password"  required="required" value="{$typed['password']}">
                     <span class="error" id="passwordError">{$error['password']}</span>
                   </div>
                 </div>
+
                 <div class="form-group">
                   <label for="rePassword" class="col-md-2 control-label">Re-enter password</label>
-                  <div class="col-md-4">
+                  <div class="col-md-5">
                     <input type="password" class="form-control" id="rePassword" name="rePassword" placeholder="Re-enter password"  required="required" value="{$typed['rePassword']}">
                     <span class="error" id="rePasswordError">{$error['rePassword']}</span>
                   </div>
@@ -62,20 +105,26 @@
                 </div>
                 -->
                 <div class="form-group">
-                  <div class="col-md-offset-6 col-md-10">
+                  <div class="col-md-offset-7 col-md-10">
                     <button id="submit" class="btn btn-primary">Register</button>
                   </div>
                 </div>
+
               </form>
             </div>
+
           </div>
+
           <div class="col-md-3">
             <div class="right-content">
               <include file="Public:hot" />
             </div>
           </div>
+
         </div>
+
       </div>
+
     </div>
     <script src="/Public/js/jquery-2.1.1.min.js"></script>
     <script src="/Public/js/bootstrap.min.js"></script>

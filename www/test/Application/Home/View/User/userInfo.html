@@ -15,6 +15,7 @@
             <include file="Public:header" />
             <div class="row">
                 <div class="col-md-9">
+
                     <div>
                         <ul class="nav nav-tabs" id="infoTabs">
                             <li class="active">
@@ -31,18 +32,20 @@
                             </li>
                         </ul>
                     </div>
+
                     <div class="tab-content">
                         <div class="tab-pane active" id="basicInfoTab">
                             <div class="userInfo">
                                 <img src = "/Uploads/{$_SESSION['icon']}" class="icon">
                                 <div id="editIcon" class="editIcon">Edit photo</div>
                             </div>
+
                             <div class="infoText">
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <span> <b>  {$_SESSION['userName']}</b>
-                                <!--({$_SESSION['email']})-->
+                                <!--{$_SESSION['email']}
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="#" id="  editInfo" class="editInfo">Edit information</a>
+                                <a href="#" id="  editInfo" class="editInfo">Edit information</a>-->
                                 </span>
                                 <div id="detail">
                                     <label for="registerTime">Register time:</label>
@@ -71,6 +74,7 @@
                                     (What are credits?)
                                     </button>
                                     <br/>
+
                                     <label for="signature">Signature:</label>
                                     &nbsp;&nbsp;
                                     <span id="signature">
@@ -80,6 +84,18 @@
                                     {$_SESSION['signature']}
                                     </empty>
                                     </span>
+                                    <br/>
+
+                                    <label for="grade">Teaching Grade:</label>
+                                    &nbsp;&nbsp;
+                                    <span id="grade">{$_SESSION['grade']}</span>
+                                    <br/>
+
+                                    <label for="subject">Teaching Subject:</label>
+                                    &nbsp;&nbsp;
+                                    <span id="subject">{$_SESSION['subject']}</span>
+
+
                                 </div>
                             </div>
                         </div>
@@ -89,6 +105,7 @@
                                 <br/>
                                 <br/>
                                 <form class="form-horizontal" id="infoForm">
+
                                     <div class="form-group">
                                         <label for="newUserName" class="col-md-2 control-label">Username</label>
                                         <div class="col-md-4">
@@ -96,6 +113,23 @@
                                             <span class="error userNameError"></span>
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="newGrade" class="col-md-2 control-label">Teaching Grade</label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" id="newGrade" name="newGrade"placeholder="Teaching Grade" required="required" value="{$_SESSION['grade']}">
+                                            <span class="error gradeError"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="newSubject" class="col-md-2 control-label">Teaching Subject</label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" id="newSubject" name="newSubject"placeholder="Teaching Subject" required="required" value="{$_SESSION['subject']}">
+                                            <span class="error subjectError"></span>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <label for="newSignature" class="col-md-2 control-label">Signature</label>
                                         <div class="col-md-6">
@@ -103,6 +137,7 @@
                                             <span class="error signatureError"></span>
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <div class="col-md-offset-7 col-md-6">
                                             <button id="saveInfo" class="btn btn-primary">Save</button>
@@ -143,6 +178,12 @@
                                 </div>
                             </form>
                         </div>
+
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+
                         <div class="tab-pane" id="iconTab">
                             <div id="altContent"></div>
                         </div>
@@ -152,25 +193,25 @@
                                 <li class="active">
                                     <else />
                                     <li></if>
-                                        <a href="{:U('UserInfo/index?type=1')}">My questions</a>
+                                        <a href="{:U('UserInfo/index?type=1')}">My Questions</a>
                                     </li>
                                     <if condition="($type eq 2) ">
                                     <li class="active">
                                         <else />
                                         <li></if>
-                                            <a href="{:U('UserInfo/index?type=2')}">My answers</a>
+                                            <a href="{:U('UserInfo/index?type=2')}">My Answers</a>
                                         </li>
                                         <if condition="($type eq 3) ">
                                         <li class="active">
                                             <else />
                                             <li></if>
-                                                <a href="{:U('UserInfo/index?type=3')}">Others reviews</a>
+                                                <a href="{:U('UserInfo/index?type=3')}">Others Answers</a>
                                             </li>
                                             <if condition="($type eq 4) ">
                                             <li class="active">
                                                 <else />
                                                 <li></if>
-                                                    <a href="{:U('UserInfo/index?type=4')}">My favorites</a>
+                                                    <a href="{:U('UserInfo/index?type=4')}">My Favorites</a>
                                                 </li>
                                 <if condition="($type eq 5) ">
                                     <li class="active">
@@ -336,7 +377,7 @@
                         xiuxiu.setLaunchVars("customMenu", []);
                         xiuxiu.embedSWF("altContent",5,"600px","430px");
                         //必须为绝对路径。。。忧伤了。。。
-                        xiuxiu.setUploadURL("http://52.35.36.204/{:U('UserInfo/xiuxiuUpload')}");
+                        xiuxiu.setUploadURL("http://localhost/{:U('UserInfo/xiuxiuUpload')}");
                         xiuxiu.onUploadResponse = function (data)
                         {
                         location.reload();

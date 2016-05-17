@@ -55,6 +55,11 @@ class RegisterController extends Controller {
 
 			session( 'userId', $user['userId'] );
 			session( 'userName', $user['userName'] );
+			session( 'teachID', $user['teachID'] );
+			session( 'geoLocation', $user['geoLocation'] );
+			session( 'school', $user['school'] );
+			session( 'grade', $user['grade'] );
+			session( 'subject', $user['subject'] );
 			session( 'icon',  $user['icon'] );
 			session( 'email',  $user['email'] );
 			session( 'signature', $user['signature'] );

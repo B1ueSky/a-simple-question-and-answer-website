@@ -49,8 +49,10 @@ class LoginController extends Controller {
 		session( 'registerTime', format_date( $user['registerTime'] ) );
 		session( 'lastLoginTime', format_date( $user['lastLoginTime'] ) );
 		//session( 'lastLoginTime', format_date( $user['lastLoginTime'] ) );
+		//var logedin == true;
 
 		$this->success( 'Success', U('Index/index') );
+	
 	}
 
 	//注销

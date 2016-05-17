@@ -1,8 +1,10 @@
 ﻿body {
 padding-top: 70px;
+    padding-bottom: 70px;
+
 }
 label {
-font-family:"微软雅黑";
+font-family:"Times New Roman";
 font-weight: 300;
 color: #666666;
 }
@@ -36,17 +38,9 @@ font-size: 12px;
 .gray {
 color: #888888;
 }
-.bg_sprite{
-background-image:url("/Public/image/powerby.jpg");
-background-repeat:no-repeat}
-.jquery_icon {display:inline-block; width:160px;height:80px;background-position:0 0;}
-.bootstrap_icon {display:inline-block; width:160px;height:80px;background-position:-160px 0px;}
-.thinkphp_icon {display:inline-block; width:160px;height:80px;background-position:-320px 0px;}
-.poweredby {
-padding-right: 20px;
-}
+
 .webInfo{
-padding-left: 100px;
+padding-left: 30px;
 padding-top: 10px;
 font-weight: bold;
 }
@@ -57,7 +51,7 @@ font-size: 20px;
 padding-bottom: 10px;
 }
 .footer {
-height: 120px;
+height: 100px;
 }
 .hot {
 padding-bottom: 10px;
